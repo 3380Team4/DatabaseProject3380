@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using ThemeParkApplication.Models;
 
 namespace ThemeParkApplication
 {
@@ -22,6 +24,8 @@ namespace ThemeParkApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddDbContext<themeparkdbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ThemeparkDatabase")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,78 @@
+﻿@model ThemeParkApplication.Models.Employees
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employees</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateBirth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateBirth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.JobTitleNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.JobTitleNavigation.JobTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Supervisor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Supervisor.EmployeeId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WorksAtAttrNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WorksAtAttrNavigation.AttractionId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WorksAtConcNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WorksAtConcNavigation.ConcessionId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.EmployeeId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

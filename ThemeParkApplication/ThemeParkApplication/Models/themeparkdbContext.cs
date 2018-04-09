@@ -25,13 +25,9 @@ namespace ThemeParkApplication.Models
         public virtual DbSet<Transactions> Transactions { get; set; }
         public virtual DbSet<WorkStatusTable> WorkStatusTable { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public themeparkdbContext(DbContextOptions<themeparkdbContext> options) : base(options)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Data Source=den1.mssql3.gear.host;Initial Catalog=themeparkdb;User ID=themeparkdb;Password=Ie628uU7-8~1;");
-            }
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
