@@ -1,0 +1,57 @@
+﻿@model ThemeParkApplication.Models.Attractions
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Attractions</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AttractionName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AttractionName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HeightRequirement)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HeightRequirement)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AgeRequirement)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AgeRequirement)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AttractionStatusNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AttractionStatusNavigation.AttractionStatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AttractionTypeNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AttractionTypeNavigation.AttractionType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Manager)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Manager.EmployeeId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="AttractionId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

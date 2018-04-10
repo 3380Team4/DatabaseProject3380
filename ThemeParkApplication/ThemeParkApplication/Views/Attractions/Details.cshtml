@@ -1,0 +1,54 @@
+﻿@model ThemeParkApplication.Models.Attractions
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Attractions</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AttractionName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AttractionName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HeightRequirement)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HeightRequirement)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AgeRequirement)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AgeRequirement)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AttractionStatusNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AttractionStatusNavigation.AttractionStatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AttractionTypeNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AttractionTypeNavigation.AttractionType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Manager)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Manager.EmployeeId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.AttractionId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
