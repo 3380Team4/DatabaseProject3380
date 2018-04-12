@@ -12,7 +12,7 @@ namespace ThemeParkApplication.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return Redirect("Account/Login");
         }
 
         public IActionResult About()
