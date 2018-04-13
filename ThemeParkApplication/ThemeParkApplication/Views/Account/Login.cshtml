@@ -15,5 +15,10 @@
         <input asp-for="Password" />
         <span asp-validation-for="Password"></span>
     </div>
-    <div><input type="submit" value="Log in" /></div>
+    <div>
+        <label asp-for="RememberMe"></label>
+        <input asp-for="RememberMe" />
+        <span asp-validation-for="RememberMe"></span>
+    </div>
+    <div><p><input type="submit" value="Log In" /></p><p><a asp-action="Register">Register</a></p></div>
 </form>
