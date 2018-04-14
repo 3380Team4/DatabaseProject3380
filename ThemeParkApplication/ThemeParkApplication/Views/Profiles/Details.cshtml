@@ -1,0 +1,54 @@
+﻿@model ThemeParkApplication.Models.Profile
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Salt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Salt)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateCreation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastLoggedIn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastLoggedIn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Employee.EmployeeId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Email">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
