@@ -1,0 +1,48 @@
+﻿@model ThemeParkApplication.Models.Merchandise
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Merchandise</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ItemName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Attr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Attr.AttractionId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Conc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Conc.ConcessionId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemTypeNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ItemTypeNavigation.ItemType)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ItemId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ThemeParkApplication.Models.Concessions>
+
+@{
+    ViewData["Title"] = "Concessions";
+}
+
+<h2>Concessions</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                   Concession Name
+                </th>
+                <th>
+                   Opening Time
+                </th>
+                <th>
+                   Closing Time
+                </th>
+            <th>
+                Concession Status
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manager)
+            </th>
+            <th>
+                Store Type
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConcessionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpeningTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClosingTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConcessionStatusNavigation.ConcessionStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manager.EmployeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StoreTypeNavigation.StoreType)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ConcessionId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ConcessionId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ConcessionId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

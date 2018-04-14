@@ -1,0 +1,48 @@
+﻿@model ThemeParkApplication.Models.Transactions
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Transactions</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SaleAmount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SaleAmount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Guest)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Guest.CustomerFirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Merch)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Merch.ItemId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SellerEmployee)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SellerEmployee.EmployeeId)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

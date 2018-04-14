@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<ThemeParkApplication.Models.Attractions>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Attractions";
 }
 
-<h2>Index</h2>
+<h2>Attractions</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,19 +13,20 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.AttractionName)
+                    Attraction Name
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.HeightRequirement)
+                    Height Requirement
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.AgeRequirement)
+                    Age Requirement
                 </th>
             <th>
-                @Html.DisplayNameFor(model => model.AttractionStatusNavigation)
+               Attraction Status 
+              
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AttractionTypeNavigation)
+                Attraction Type
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Manager)

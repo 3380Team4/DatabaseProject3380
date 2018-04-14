@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ThemeParkApplication.Models.Merchandise>
+
+@{
+    ViewData["Title"] = "Merchandise";
+}
+
+<h2>Merchandise</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    Item Name
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+            <th>
+                Attraction ID
+            </th>
+            <th>
+                Concession ID
+            </th>
+            <th>
+                Item Type
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Attr.AttractionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conc.ConcessionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemTypeNavigation.ItemType)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ItemId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ItemId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ItemId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

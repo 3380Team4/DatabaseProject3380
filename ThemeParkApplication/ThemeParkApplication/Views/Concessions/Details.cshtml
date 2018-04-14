@@ -1,0 +1,54 @@
+﻿@model ThemeParkApplication.Models.Concessions
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Concessions</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ConcessionName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ConcessionName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OpeningTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OpeningTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClosingTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClosingTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ConcessionStatusNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ConcessionStatusNavigation.ConcessionStatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Manager)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Manager.EmployeeId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StoreTypeNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StoreTypeNavigation.StoreType)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ConcessionId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

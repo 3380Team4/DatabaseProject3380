@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ThemeParkApplication.Models.Maintenance>
+
+@{
+    ViewData["Title"] = "Maintenance";
+}
+
+<h2>Maintenance</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    Starting Date
+                </th>
+                <th>
+                    Finish Date
+                </th>
+            <th>
+                Attraction ID
+            </th>
+            <th>
+                Concession ID
+            </th>
+            <th>
+                Maintenance Employee
+            </th>
+            <th>
+                Order Type
+            </th>
+            <th>
+                Work Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkFinishDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Attr.AttractionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conc.ConcessionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaintenanceEmployee.EmployeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderTypeNavigation.OrderType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkStatusNavigation.WorkStatusIndex)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.WorkOrderId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.WorkOrderId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.WorkOrderId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

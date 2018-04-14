@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ThemeParkApplication.Models.Closures>
+
+@{
+    ViewData["Title"] = "Closures";
+}
+
+<h2>Closures</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    Date of Closure
+                </th>
+                <th>
+                    Duration
+                </th>
+            <th>
+                Attraction ID
+            </th>
+            <th>
+                Concesssion ID
+            </th>
+            <th>
+                Reason
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateClosure)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DurationClosure)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Attr.AttractionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conc.ConcessionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReasonNavigation.Reason)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ClosureId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ClosureId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ClosureId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

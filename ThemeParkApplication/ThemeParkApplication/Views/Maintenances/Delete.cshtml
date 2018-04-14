@@ -1,0 +1,63 @@
+﻿@model ThemeParkApplication.Models.Maintenance
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Maintenance</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkStartDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WorkStartDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkFinishDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WorkFinishDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Attr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Attr.AttractionId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Conc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Conc.ConcessionId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaintenanceEmployee)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaintenanceEmployee.EmployeeId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderTypeNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderTypeNavigation.OrderType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkStatusNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WorkStatusNavigation.WorkStatusIndex)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="WorkOrderId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

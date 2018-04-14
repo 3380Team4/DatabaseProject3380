@@ -1,0 +1,48 @@
+﻿@model ThemeParkApplication.Models.Closures
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Closures</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateClosure)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateClosure)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DurationClosure)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DurationClosure)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Attr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Attr.AttractionId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Conc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Conc.ConcessionId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReasonNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReasonNavigation.Reason)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ClosureId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
