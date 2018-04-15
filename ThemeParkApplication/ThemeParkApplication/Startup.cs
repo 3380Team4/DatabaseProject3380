@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using ThemeParkApplication.Models;
 using Microsoft.AspNetCore.Identity;
+using ThemeParkApplication.Configuration;
 
 namespace ThemeParkApplication
 {
@@ -30,12 +31,13 @@ namespace ThemeParkApplication
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<themeparkdbContext>()
-                .AddDefaultTokenProviders();
-
+                .AddDefaultTokenProviders();    
+            
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -57,6 +59,10 @@ namespace ThemeParkApplication
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
+
     }
+
+
 }

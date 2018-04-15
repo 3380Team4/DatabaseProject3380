@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using ThemeParkApplication.Models;
 
 namespace ThemeParkApplication.Controllers
-{   [Authorize]
+{   [Authorize(Roles="Employee")]
     public class AttractionsController : Controller
     {
         private readonly themeparkdbContext _context;

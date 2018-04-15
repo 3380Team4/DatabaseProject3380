@@ -35,6 +35,8 @@ namespace ThemeParkApplication.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, false);
+                    await _userManager.AddToRoleAsync(user, "Employee");
+
                     return RedirectToAction("Index", "Home/About");
                 }
                 else
