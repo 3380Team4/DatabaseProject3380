@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using ThemeParkApplication.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace ThemeParkApplication
 {
@@ -26,6 +27,10 @@ namespace ThemeParkApplication
             services.AddMvc();
 
             services.AddDbContext<themeparkdbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ThemeparkDatabase")));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<themeparkdbContext>()
+                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +47,8 @@ namespace ThemeParkApplication
             }
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

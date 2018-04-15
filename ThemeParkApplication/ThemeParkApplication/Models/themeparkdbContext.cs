@@ -1,10 +1,11 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ThemeParkApplication.Models
 {
-    public partial class themeparkdbContext : DbContext
+    public partial class themeparkdbContext : IdentityDbContext<ApplicationUser>
     {
         public virtual DbSet<Attractions> Attractions { get; set; }
         public virtual DbSet<AttractionStatusTable> AttractionStatusTable { get; set; }
@@ -32,6 +33,8 @@ namespace ThemeParkApplication.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Attractions>(entity =>
             {
                 entity.HasKey(e => e.AttractionId);
