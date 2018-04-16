@@ -3,13 +3,21 @@
 @{
     ViewData["Title"] = "Attractions";
 }
+@using Microsoft.AspNetCore.Identity
+@using ThemeParkApplication.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 <br /><br />
 <h2>Attractions</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -57,11 +65,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Manager.EmployeeId)
                 </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.AttractionId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.AttractionId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.AttractionId">Delete</a>
-                </td>
+                <td> <a asp-action="Details" asp-route-id="@item.AttractionId">Details</a></td>
+                @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
+                {
+                    <td>
+
+                        <a asp-action="Edit" asp-route-id="@item.AttractionId">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.AttractionId">Delete</a>
+                    </td>
+                }
             </tr>
         }
     </tbody>

@@ -62,7 +62,7 @@ namespace ThemeParkApplication.Configuration
                 if (createManager.Succeeded)
                 {
                     // here we assign the new user the "Admin" role 
-                    await UserManager.AddToRoleAsync(adminUser, "Manager");
+                    await UserManager.AddToRoleAsync(managerUser, "Manager");
                 }
             }
 

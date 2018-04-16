@@ -18,14 +18,14 @@ namespace ThemeParkApplication.Controllers
         {
             _context = context;
         }
-
+        [AllowAnonymous]
         // GET: Attractions
         public async Task<IActionResult> Index()
         {
             var themeparkdbContext = _context.Attractions.Include(a => a.AttractionStatusNavigation).Include(a => a.AttractionTypeNavigation).Include(a => a.Manager);
             return View(await themeparkdbContext.ToListAsync());
         }
-
+        [AllowAnonymous]
         // GET: Attractions/Details/5
         public async Task<IActionResult> Details(string id)
         {
@@ -47,6 +47,7 @@ namespace ThemeParkApplication.Controllers
             return View(attractions);
         }
 
+        [Authorize(Roles ="Admin, Manager")]
         // GET: Attractions/Create
         public IActionResult Create()
         {
@@ -59,6 +60,8 @@ namespace ThemeParkApplication.Controllers
         // POST: Attractions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        [Authorize(Roles = "Admin, Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AttractionName,AttractionId,ManagerId,AttractionType,HeightRequirement,AgeRequirement,AttractionStatus")] Attractions attractions)
@@ -75,6 +78,7 @@ namespace ThemeParkApplication.Controllers
             return View(attractions);
         }
 
+        [Authorize(Roles = "Admin, Manager")]
         // GET: Attractions/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
@@ -97,6 +101,8 @@ namespace ThemeParkApplication.Controllers
         // POST: Attractions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        [Authorize(Roles = "Admin, Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("AttractionName,AttractionId,ManagerId,AttractionType,HeightRequirement,AgeRequirement,AttractionStatus")] Attractions attractions)
@@ -132,6 +138,7 @@ namespace ThemeParkApplication.Controllers
             return View(attractions);
         }
 
+        [Authorize(Roles = "Admin, Manager")]
         // GET: Attractions/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
@@ -153,6 +160,7 @@ namespace ThemeParkApplication.Controllers
             return View(attractions);
         }
 
+        [Authorize(Roles = "Admin, Manager")]
         // POST: Attractions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using ThemeParkApplication.Models;
 using Microsoft.AspNetCore.Identity;
 using ThemeParkApplication.Configuration;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace ThemeParkApplication
 {
@@ -25,7 +27,8 @@ namespace ThemeParkApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(
+        );
 
             services.AddDbContext<themeparkdbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ThemeparkDatabase")));
 
@@ -37,7 +40,7 @@ namespace ThemeParkApplication
             {
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
                 // If the LoginPath isn't set, ASP.NET Core defaults 
                 // the path to /Account/Login.
                 options.LoginPath = "/Account/Login";
