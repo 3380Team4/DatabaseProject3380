@@ -4,6 +4,7 @@
     ViewData["Title"] = "Attractions";
 }
 
+<br /><br />
 <h2>Attractions</h2>
 
 <p>
@@ -12,18 +13,18 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    Attraction Name
-                </th>
-                <th>
-                    Height Requirement
-                </th>
-                <th>
-                    Age Requirement
-                </th>
             <th>
-               Attraction Status 
-              
+                Attraction Name
+            </th>
+            <th>
+                Height Requirement
+            </th>
+            <th>
+                Age Requirement
+            </th>
+            <th>
+                Attraction Status
+
             </th>
             <th>
                 Attraction Type
@@ -35,32 +36,33 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AttractionName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HeightRequirement)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AgeRequirement)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AttractionStatusNavigation.AttractionStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AttractionTypeNavigation.AttractionType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manager.EmployeeId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.AttractionId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AttractionId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.AttractionId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AttractionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HeightRequirement)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AgeRequirement)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AttractionStatusNavigation.AttractionStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AttractionTypeNavigation.AttractionType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manager.EmployeeId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.AttractionId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.AttractionId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.AttractionId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

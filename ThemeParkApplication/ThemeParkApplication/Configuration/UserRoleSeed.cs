@@ -28,7 +28,7 @@ namespace ThemeParkApplication.Configuration
                 }
             }
 
-            var poweruser = new ApplicationUser
+            var adminUser = new ApplicationUser
             {
                 UserName = "admin@email.com",
                 Email = "admin@email.com"
@@ -39,13 +39,33 @@ namespace ThemeParkApplication.Configuration
             
             if (user == null)
             {
-                var createPowerUser = await UserManager.CreateAsync(poweruser, userPassword);
-                if (createPowerUser.Succeeded)
+                var createAdminUser = await UserManager.CreateAsync(adminUser, userPassword);
+                if (createAdminUser.Succeeded)
                 {
                     // here we assign the new user the "Admin" role 
-                    await UserManager.AddToRoleAsync(poweruser, "Admin");
+                    await UserManager.AddToRoleAsync(adminUser, "Admin");
                 }
             }
+
+            var managerUser = new ApplicationUser
+            {
+                UserName = "manager@email.com",
+                Email = "manager@email.com"
+            };
+
+            string managerPassword = "P@ssw0rd";
+            var manager = await UserManager.FindByEmailAsync("manager@email.com");
+
+            if (manager == null)
+            {
+                var createManager = await UserManager.CreateAsync(managerUser, managerPassword);
+                if (createManager.Succeeded)
+                {
+                    // here we assign the new user the "Admin" role 
+                    await UserManager.AddToRoleAsync(adminUser, "Manager");
+                }
+            }
+
 
             // creating a super user who could maintain the web app
 
