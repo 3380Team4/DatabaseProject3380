@@ -101,7 +101,7 @@ namespace ThemeParkApplication.Controllers
             ViewData["ConcId"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionId", maintenance.ConcId);
             ViewData["MaintenanceEmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeId", maintenance.MaintenanceEmployeeId);
             ViewData["OrderType"] = new SelectList(_context.OrderTypeTable, "OrderTypeIndex", "OrderType", maintenance.OrderType);
-            ViewData["WorkStatus"] = new SelectList(_context.WorkStatusTable, "WorkStatusIndex", "WorkStatusIndex", maintenance.WorkStatus);
+            ViewData["WorkStatus"] = new SelectList(_context.WorkStatusTable, "WorkStatusIndex", "WorkStatus", maintenance.WorkStatus);
             return View(maintenance);
         }
 
@@ -142,7 +142,7 @@ namespace ThemeParkApplication.Controllers
             ViewData["ConcId"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionId", maintenance.ConcId);
             ViewData["MaintenanceEmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeId", maintenance.MaintenanceEmployeeId);
             ViewData["OrderType"] = new SelectList(_context.OrderTypeTable, "OrderTypeIndex", "OrderType", maintenance.OrderType);
-            ViewData["WorkStatus"] = new SelectList(_context.WorkStatusTable, "WorkStatusIndex", "WorkStatusIndex", maintenance.WorkStatus);
+            ViewData["WorkStatus"] = new SelectList(_context.WorkStatusTable, "WorkStatusIndex", "WorkStatus", maintenance.WorkStatus);
             return View(maintenance);
         }
 
