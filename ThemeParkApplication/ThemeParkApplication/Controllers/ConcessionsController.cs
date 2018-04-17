@@ -47,6 +47,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Concessions/Create
+        [Authorize(Roles = "Admin, Manager")]
         public IActionResult Create()
         {
             ViewData["ConcessionStatus"] = new SelectList(_context.ConcessionStatusTable, "ConcessionStatusIndex", "ConcessionStatus");
@@ -60,6 +61,7 @@ namespace ThemeParkApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Create([Bind("ConcessionName,ConcessionId,ManagerId,StoreType,OpeningTime,ClosingTime,ConcessionStatus")] Concessions concessions)
         {
             if (ModelState.IsValid)
@@ -75,6 +77,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Concessions/Edit/5
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -98,6 +101,7 @@ namespace ThemeParkApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Edit(string id, [Bind("ConcessionName,ConcessionId,ManagerId,StoreType,OpeningTime,ClosingTime,ConcessionStatus")] Concessions concessions)
         {
             if (id != concessions.ConcessionId)
@@ -132,6 +136,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Concessions/Delete/5
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -155,6 +160,7 @@ namespace ThemeParkApplication.Controllers
         // POST: Concessions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var concessions = await _context.Concessions.SingleOrDefaultAsync(m => m.ConcessionId == id);

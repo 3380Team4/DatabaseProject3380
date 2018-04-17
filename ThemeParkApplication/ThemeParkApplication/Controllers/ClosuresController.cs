@@ -47,6 +47,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Closures/Create
+        [Authorize(Roles = "Admin, Manager")]
         public IActionResult Create()
         {
             ViewData["AttrId"] = new SelectList(_context.Attractions, "AttractionId", "AttractionId");
@@ -60,6 +61,7 @@ namespace ThemeParkApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Create([Bind("ClosureId,Reason,ConcId,AttrId,DateClosure,DurationClosure")] Closures closures)
         {
             if (ModelState.IsValid)
@@ -75,6 +77,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Closures/Edit/5
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -98,6 +101,7 @@ namespace ThemeParkApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Edit(string id, [Bind("ClosureId,Reason,ConcId,AttrId,DateClosure,DurationClosure")] Closures closures)
         {
             if (id != closures.ClosureId)
@@ -132,6 +136,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Closures/Delete/5
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -155,6 +160,7 @@ namespace ThemeParkApplication.Controllers
         // POST: Closures/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var closures = await _context.Closures.SingleOrDefaultAsync(m => m.ClosureId == id);

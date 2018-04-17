@@ -47,6 +47,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Merchandise/Create
+        [Authorize(Roles = "Admin, Manager")]
         public IActionResult Create()
         {
             ViewData["AttrId"] = new SelectList(_context.Attractions, "AttractionId", "AttractionId");
@@ -60,6 +61,7 @@ namespace ThemeParkApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Create([Bind("ItemName,ItemId,Price,ItemType,ConcId,AttrId")] Merchandise merchandise)
         {
             if (ModelState.IsValid)
@@ -74,7 +76,9 @@ namespace ThemeParkApplication.Controllers
             return View(merchandise);
         }
 
+
         // GET: Merchandise/Edit/5
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -98,6 +102,7 @@ namespace ThemeParkApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Edit(string id, [Bind("ItemName,ItemId,Price,ItemType,ConcId,AttrId")] Merchandise merchandise)
         {
             if (id != merchandise.ItemId)
@@ -132,6 +137,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Merchandise/Delete/5
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -155,6 +161,7 @@ namespace ThemeParkApplication.Controllers
         // POST: Merchandise/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var merchandise = await _context.Merchandise.SingleOrDefaultAsync(m => m.ItemId == id);

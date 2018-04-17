@@ -49,6 +49,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Maintenances/Create
+        [Authorize(Roles = "Admin, Manager")]
         public IActionResult Create()
         {
             ViewData["AttrId"] = new SelectList(_context.Attractions, "AttractionId", "AttractionId");
@@ -64,6 +65,7 @@ namespace ThemeParkApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Create([Bind("WorkOrderId,OrderType,ConcId,AttrId,MaintenanceEmployeeId,WorkStatus,WorkStartDate,WorkFinishDate")] Maintenance maintenance)
         {
             if (ModelState.IsValid)
@@ -81,6 +83,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Maintenances/Edit/5
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -106,6 +109,7 @@ namespace ThemeParkApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Edit(string id, [Bind("WorkOrderId,OrderType,ConcId,AttrId,MaintenanceEmployeeId,WorkStatus,WorkStartDate,WorkFinishDate")] Maintenance maintenance)
         {
             if (id != maintenance.WorkOrderId)
@@ -142,6 +146,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Maintenances/Delete/5
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -167,6 +172,7 @@ namespace ThemeParkApplication.Controllers
         // POST: Maintenances/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var maintenance = await _context.Maintenance.SingleOrDefaultAsync(m => m.WorkOrderId == id);
