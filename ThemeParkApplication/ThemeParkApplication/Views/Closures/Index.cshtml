@@ -3,6 +3,11 @@
 @{
     ViewData["Title"] = "Closures";
 }
+@using Microsoft.AspNetCore.Identity
+@using ThemeParkApplication.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 <br /><br />
 <h2>Closures</h2>
 

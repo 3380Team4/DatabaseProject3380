@@ -3,6 +3,11 @@
 @{
     ViewData["Title"] = "Employees";
 }
+@using Microsoft.AspNetCore.Identity
+@using ThemeParkApplication.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 <br /><br />
 <h2>Employees</h2>
