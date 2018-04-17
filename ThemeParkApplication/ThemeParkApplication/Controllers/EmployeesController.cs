@@ -49,6 +49,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Employees/Create
+        [Authorize(Roles = "Admin, Manager")]
         public IActionResult Create()
         {
             ViewData["JobTitle"] = new SelectList(_context.JobTitleTable, "JobTitleIndex", "JobTitle");
@@ -63,6 +64,7 @@ namespace ThemeParkApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Create([Bind("LastName,FirstName,EmployeeId,Gender,DateBirth,JobTitle,SupervisorId,StartDate,EndDate,WorksAtConc,WorksAtAttr")] Employees employees)
         {
             if (ModelState.IsValid)
@@ -79,6 +81,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Employees/Edit/5
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -103,6 +106,7 @@ namespace ThemeParkApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Edit(string id, [Bind("LastName,FirstName,EmployeeId,Gender,DateBirth,JobTitle,SupervisorId,StartDate,EndDate,WorksAtConc,WorksAtAttr")] Employees employees)
         {
             if (id != employees.EmployeeId)
@@ -138,6 +142,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Employees/Delete/5
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -162,6 +167,7 @@ namespace ThemeParkApplication.Controllers
         // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var employees = await _context.Employees.SingleOrDefaultAsync(m => m.EmployeeId == id);

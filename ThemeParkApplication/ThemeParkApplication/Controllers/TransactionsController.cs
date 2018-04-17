@@ -47,6 +47,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Transactions/Create
+        [Authorize(Roles = "Admin, Manager")]
         public IActionResult Create()
         {
             ViewData["GuestId"] = new SelectList(_context.Customers, "CustomerId", "CustomerFirstName");
@@ -75,6 +76,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Transactions/Edit/5
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -98,6 +100,7 @@ namespace ThemeParkApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Edit(string id, [Bind("TransactionId,DateOfSale,MerchId,SaleAmount,SellerEmployeeId,GuestId,Quantity")] Transactions transactions)
         {
             if (id != transactions.TransactionId)
@@ -132,6 +135,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Transactions/Delete/5
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -155,6 +159,7 @@ namespace ThemeParkApplication.Controllers
         // POST: Transactions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var transactions = await _context.Transactions.SingleOrDefaultAsync(m => m.TransactionId == id);

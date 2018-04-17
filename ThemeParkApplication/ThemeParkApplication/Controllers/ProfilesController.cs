@@ -45,6 +45,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Profiles/Create
+        [Authorize(Roles = "Admin, Manager")]
         public IActionResult Create()
         {
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeId");
@@ -69,6 +70,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Profiles/Edit/5
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -90,6 +92,7 @@ namespace ThemeParkApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Edit(string id, [Bind("EmployeeId,Email,Password,Salt,Status,DateCreation,LastLoggedIn")] Profile profile)
         {
             if (id != profile.Email)
@@ -122,6 +125,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Profiles/Delete/5
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -143,6 +147,7 @@ namespace ThemeParkApplication.Controllers
         // POST: Profiles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var profile = await _context.Profile.SingleOrDefaultAsync(m => m.Email == id);
