@@ -6,11 +6,17 @@
 
 <h2>Create</h2>
 
+
+
+
+
 <h4>Employees</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+<form asp-action="Create">
+    <div class="row">
+
+        <div class="col-md-4">
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="LastName" class="control-label"></label>
@@ -32,6 +38,8 @@
                 <input asp-for="Gender" class="form-control" />
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-4">
             <div class="form-group">
                 <label asp-for="DateBirth" class="control-label"></label>
                 <input asp-for="DateBirth" class="form-control" />
@@ -39,17 +47,19 @@
             </div>
             <div class="form-group">
                 <label asp-for="JobTitle" class="control-label"></label>
-                <select asp-for="JobTitle" class ="form-control" asp-items="ViewBag.JobTitle"></select>
+                <select asp-for="JobTitle" class="form-control" asp-items="ViewBag.JobTitle"></select>
             </div>
             <div class="form-group">
                 <label asp-for="SupervisorId" class="control-label"></label>
-                <select asp-for="SupervisorId" class ="form-control" asp-items="ViewBag.SupervisorId"></select>
+                <select asp-for="SupervisorId" class="form-control" asp-items="ViewBag.SupervisorId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="StartDate" class="control-label"></label>
                 <input asp-for="StartDate" class="form-control" />
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-4">
             <div class="form-group">
                 <label asp-for="EndDate" class="control-label"></label>
                 <input asp-for="EndDate" class="form-control" />
@@ -57,23 +67,24 @@
             </div>
             <div class="form-group">
                 <label asp-for="WorksAtConc" class="control-label"></label>
-                <select asp-for="WorksAtConc" class ="form-control" asp-items="ViewBag.WorksAtConc"></select>
+                <select asp-for="WorksAtConc" class="form-control" asp-items="ViewBag.WorksAtConc"></select>
             </div>
             <div class="form-group">
                 <label asp-for="WorksAtAttr" class="control-label"></label>
-                <select asp-for="WorksAtAttr" class ="form-control" asp-items="ViewBag.WorksAtAttr"></select>
+                <select asp-for="WorksAtAttr" class="form-control" asp-items="ViewBag.WorksAtAttr"></select>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+    <div class="row">
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</form>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
