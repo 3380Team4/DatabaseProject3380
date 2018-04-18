@@ -16,7 +16,7 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse  navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -29,12 +29,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    <li><a asp-area="" asp-controller="Attractions" asp-action="index">Attractions</a></li>
-                    <li><a asp-area="" asp-controller="Concessions" asp-action="index">Concessions</a></li>
-                    <li><a asp-area="" asp-controller="Merchandise" asp-action="index">Merchandise</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    <li><a asp-area="" asp-action="About"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact"><span class="glyphicon glyphicon-earphone"></span> Contact</a></li>
+                    <li><a asp-area="" asp-controller="Attractions" asp-action="index"><span class="glyphicon glyphicon-film"></span> Attractions</a></li>
+                    <li><a asp-area="" asp-controller="Concessions" asp-action="index"><span class="glyphicon glyphicon-glass"></span> Concessions</a></li>
+                    <li><a asp-area="" asp-controller="Merchandise" asp-action="index"><span class="glyphicon glyphicon-home"></span> Merchandise</a></li>
                 </ul>
                 <ul class="nav navbar-nav">
                     @await Html.PartialAsync("_LoginPartial")
@@ -46,8 +46,10 @@
         <hr />
         @RenderBody()
         <hr />
-        <footer class="navbar navbar-fixed-bottom">
-            <center><p>&copy; 2018 - ThemeParkApplication</p></center>
+        <footer class="navbar navbar-fixed-bottom navbar">
+            <hr />
+            <center><p>&copy; 2018 - Theme Park - Team 4</p></center>
+            <hr />
         </footer>
     </div>
     <environment include="Development">
