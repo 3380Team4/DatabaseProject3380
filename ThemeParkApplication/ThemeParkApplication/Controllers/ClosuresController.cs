@@ -179,23 +179,7 @@ namespace ThemeParkApplication.Controllers
 
         public async Task<IActionResult> generateReportAsync(string YearNumber, string MonthNumber)
         {
-            var month = Int32.Parse(MonthNumber);
-            var Year = Int32.Parse(YearNumber);
-
-            if (month==12)
-            {
-                month = 1;
-                Year++;
-
-            }
-            else
-            {
-                month++;
-            }
-            var toMonth = month.ToString();
-            var toYear = Year.ToString();
-
-            var query = String.Format("SELECT * FROM dbo.Closures Where (Reason = 2 and Date_Closure >= '{0}/01/{1}' and Date_Closure <'{2}/01/{3}')", MonthNumber, YearNumber, toMonth, toYear);
+            var query = String.Format("SELECT * FROM dbo.Closures Where (Reason = 2 and Date_Closure Between '{0}/01/{1}' and '{0}/31/{1}')", MonthNumber, YearNumber);
             var report = _context.Closures.FromSql(query);
             return View(await report.ToListAsync());
 
