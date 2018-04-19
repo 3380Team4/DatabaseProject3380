@@ -50,6 +50,11 @@
     position: absolute;
     /*// padding: 20px;*/
     /*// filter: blur(10px)*/
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
 }
 
 #front-page {
@@ -82,6 +87,7 @@
     padding-bottom: 0px;
     padding-left: 0px;
     padding-right: 0px;
+    background-color: black;
 }
 
 .page-center {
