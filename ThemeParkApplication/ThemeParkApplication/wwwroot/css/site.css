@@ -33,3 +33,65 @@
         display: none;
     }
 }
+
+/*-----Below is custom CSS-----*/
+
+#background-img {
+    background: url("../images/splash-bg.jpg") no-repeat center center fixed;
+    /*background-color: black;*/
+    height: 100vh;
+    width: 100%;
+    /*// visibility: hidden;*/
+    opacity: 0;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: absolute;
+    /*// padding: 20px;*/
+    /*// filter: blur(10px)*/
+}
+
+#front-page {
+    display: flex;
+    //justify-content: center;
+    //align-items: center;
+    height: 100vh;
+    width: 100%;
+    // position: static;
+    /*opacity: 1 !important;*/
+    justify-content: center;
+    align-items: center;
+}
+
+#title {
+    color: white;
+    font-size: 48pt;
+    // font-style: bold;
+    // font-size: 12pt;
+}
+
+#front-text {
+    //dispaly: grid;
+    // font-color: "#FAEBC2";
+    position: absolute;
+}
+
+#splash-body {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+    #splash-body > .body-content {
+        margin: 0;
+        width: 100%;
+    }
+
+.container {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
