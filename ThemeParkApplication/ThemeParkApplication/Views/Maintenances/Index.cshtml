@@ -18,6 +18,16 @@
         <a asp-action="Create">Create New</a>
     </p>
 }
+
+<form action="Maintenances/generateReportAsync" method="post">
+    <lable>Year number :</lable>
+    <input type="text" name="YearNumber" placeholder="Year" />
+    <lable>Month number : </lable>
+    <input type="text" name="MonthNumber" placeholder="Month" />
+    <input type="submit" value="Generate Report" />
+</form>
+
+
 <table class="table">
     <thead>
         <tr>

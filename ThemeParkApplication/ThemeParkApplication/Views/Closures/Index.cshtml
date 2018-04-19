@@ -14,9 +14,28 @@
 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
 {
     <p>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create">Create New</a> |
+
     </p>
 }
+
+@*
+
+    @Html.DropDownList("Year", Enumerable.Range(2017, 2).Select(x => new SelectListItem { Text = x.ToString() }), "Year")
+    @Html.DropDownList("Month", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
+     <a asp-action="generateReportAsync">Gerenate Report</a>
+*@
+
+<form action="Closures/generateReportAsync" method="post">
+    <lable>Year number :</lable>
+    <input type="text" name="YearNumber" placeholder="Year" />
+    <lable>Month number : </lable>
+    <input type="text" name="MonthNumber" placeholder="Month" />
+    <input type="submit" value="Generate Report" />
+</form>
+
+<br />
+
 <table class="table">
     <thead>
         <tr>
