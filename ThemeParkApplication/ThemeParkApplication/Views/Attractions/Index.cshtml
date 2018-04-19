@@ -20,7 +20,7 @@
 
     @foreach (var item in Model)
     {
-        <div class="card" style="width: 15rem;">
+        <div class="card mb-3 ml-3" style="width: 15rem;">
             <div class="card-body">
 
                 <h5 class="card-title">
@@ -36,17 +36,17 @@
 
                 @if (item.AgeRequirement != null)
                 {
-                    <h6>Age <span class="badge badge-pill badge-warning">@item.AgeRequirement years +</span></h6>
+                    <h6>Age <span class="badge badge-pill badge-info">@item.AgeRequirement years +</span></h6>
                 }
            
                 @if (item.HeightRequirement != null)
                 {
-                    <h6>Height <span class="badge badge-pill badge-warning">@item.HeightRequirement inches+</span></h6>
+                    <h6>Height <span class="badge badge-pill badge-info">@item.HeightRequirement inches+</span></h6>
                 }
                 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
                 {
-                    <a class="btn btn-sm btn-success" asp-action="Edit" asp-route-id="@item.AttractionId">Edit</a>
-                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.AttractionId">Delete</a>
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.AttractionId">Edit</a>
+                    <a class="btn btn-sm btn-primary" asp-action="Delete" asp-route-id="@item.AttractionId">Delete</a>
                 }
             </div>
         </div>
@@ -54,7 +54,7 @@
 
     @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
     {
-        <div class="card" style="width: 15rem;">
+        <div class="card mb-3 ml-3" style="width: 15rem;">
             <div class="card-body">
                 <a asp-action="Create" class="btn btn-sm btn-primary">Add new</a>
             </div>
