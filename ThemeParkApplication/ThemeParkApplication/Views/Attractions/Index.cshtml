@@ -68,11 +68,12 @@
                 <td> <a asp-action="Details" asp-route-id="@item.AttractionId">Details</a></td>
                 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
                 {
-                    <td>
+                <td>
 
-                        <a asp-action="Edit" asp-route-id="@item.AttractionId">Edit</a> |
-                        <a asp-action="Delete" asp-route-id="@item.AttractionId">Delete</a>
-                    </td>
+                    <a asp-action="Edit" asp-route-id="@item.AttractionId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.AttractionId">Delete</a> |
+                    <a asp-area="" asp-controller="Attractions" asp-action="Report">report</a>
+                </td>
                 }
             </tr>
         }

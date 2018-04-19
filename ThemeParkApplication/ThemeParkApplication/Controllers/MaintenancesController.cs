@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ThemeParkApplication.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Diagnostics;
 
 namespace ThemeParkApplication.Controllers
 {
@@ -185,6 +186,15 @@ namespace ThemeParkApplication.Controllers
         private bool MaintenanceExists(string id)
         {
             return _context.Maintenance.Any(e => e.WorkOrderId == id);
+        }
+
+        public async Task<IActionResult> generateReportAsync(string YearNumber, string MonthNumber)
+        {
+            var query = String.Format("SELECT * FROM dbo.Maintenance Where (Work_Start_Date Between '{0}/01/{1}' and '{0}/31/{1}')", MonthNumber, YearNumber);
+            var report = _context.Maintenance.FromSql(query);
+            return View(await report.ToListAsync());
+
+
         }
     }
 }

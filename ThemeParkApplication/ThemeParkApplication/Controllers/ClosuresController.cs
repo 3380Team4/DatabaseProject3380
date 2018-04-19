@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ThemeParkApplication.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
 
 namespace ThemeParkApplication.Controllers
 {
@@ -174,5 +176,15 @@ namespace ThemeParkApplication.Controllers
         {
             return _context.Closures.Any(e => e.ClosureId == id);
         }
+
+        public async Task<IActionResult> generateReportAsync(string YearNumber, string MonthNumber)
+        {
+            var query = String.Format("SELECT * FROM dbo.Closures Where (Reason = 2 and Date_Closure Between '{0}/01/{1}' and '{0}/31/{1}')", MonthNumber, YearNumber);
+            var report = _context.Closures.FromSql(query);
+            return View(await report.ToListAsync());
+
+
+        }
+
     }
 }

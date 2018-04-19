@@ -22,9 +22,25 @@ namespace ThemeParkApplication.Controllers
         // GET: Attractions
         public async Task<IActionResult> Index()
         {
-            var themeparkdbContext = _context.Attractions.Include(a => a.AttractionStatusNavigation).Include(a => a.AttractionTypeNavigation).Include(a => a.Manager);
+            var themeparkdbContext = _context.Attractions.Include(a => a.AttractionStatusNavigation)
+                .Include(a => a.AttractionTypeNavigation)
+                .Include(a => a.Manager);
+     
+
             return View(await themeparkdbContext.ToListAsync());
         }
+        
+
+
+        public async Task<IActionResult> Report()
+        {
+             var report = _context.Attractions.FromSql("SELECT * FROM dbo.Attractions");
+            return View(await report.ToListAsync());
+        }
+
+
+
+
         [AllowAnonymous]
         // GET: Attractions/Details/5
         public async Task<IActionResult> Details(string id)
@@ -39,12 +55,15 @@ namespace ThemeParkApplication.Controllers
                 .Include(a => a.AttractionTypeNavigation)
                 .Include(a => a.Manager)
                 .SingleOrDefaultAsync(m => m.AttractionId == id);
+                
             if (attractions == null)
             {
                 return NotFound();
             }
 
             return View(attractions);
+
+
         }
 
         [Authorize(Roles ="Admin, Manager")]
