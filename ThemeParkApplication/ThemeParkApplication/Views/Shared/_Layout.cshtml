@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ThemeParkApplication</title>
     <environment include="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
@@ -16,42 +16,42 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse  navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ThemeParkApplication</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-action="About"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact"><span class="glyphicon glyphicon-earphone"></span> Contact</a></li>
-                    <li><a asp-area="" asp-controller="Attractions" asp-action="index"><span class="glyphicon glyphicon-film"></span> Attractions</a></li>
-                    <li><a asp-area="" asp-controller="Concessions" asp-action="index"><span class="glyphicon glyphicon-glass"></span> Concessions</a></li>
-                    <li><a asp-area="" asp-controller="Merchandise" asp-action="index"><span class="glyphicon glyphicon-home"></span> Merchandise</a></li>
-                </ul>
-                <ul class="nav navbar-nav">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ThemePark</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active"><a class="nav-link" asp-area="" asp-action="About"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact"><span class="glyphicon glyphicon-earphone"></span> Contact</a></liclass="nav-item">
+                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Attractions" asp-action="index"><span class="glyphicon glyphicon-film"></span> Attractions</a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Concessions" asp-action="index"><span class="glyphicon glyphicon-glass"></span> Concessions</a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Merchandise" asp-action="index"><span class="glyphicon glyphicon-home"></span> Merchandise</a></li>
                     @await Html.PartialAsync("_LoginPartial")
-                </ul>
-            </div>
+            </ul>
+
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
     </nav>
+
     <div class="container body-content">
-        
+
         @RenderBody()
-        
-        <footer class="navbar navbar-fixed-bottom navbar">
+
+        <footer class="navbar navbar-fixed-bottom">
             <hr />
             <center><p>&copy; 2018 - Theme Park - Team 4</p></center>
             <hr />
         </footer>
     </div>
     <environment include="Development">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>

@@ -25,8 +25,6 @@ namespace ThemeParkApplication.Controllers
             var themeparkdbContext = _context.Attractions.Include(a => a.AttractionStatusNavigation)
                 .Include(a => a.AttractionTypeNavigation)
                 .Include(a => a.Manager);
-     
-
             return View(await themeparkdbContext.ToListAsync());
         }
         
