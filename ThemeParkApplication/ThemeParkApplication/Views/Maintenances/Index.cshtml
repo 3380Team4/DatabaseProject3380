@@ -20,10 +20,8 @@
 }
 
 <form action="Maintenances/generateReportAsync" method="post">
-    <lable>Year number :</lable>
-    <input type="text" name="YearNumber" placeholder="Year" />
-    <lable>Month number : </lable>
-    <input type="text" name="MonthNumber" placeholder="Month" />
+    @Html.DropDownList("YearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
+    @Html.DropDownList("MonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
     <input type="submit" value="Generate Report" />
 </form>
 
