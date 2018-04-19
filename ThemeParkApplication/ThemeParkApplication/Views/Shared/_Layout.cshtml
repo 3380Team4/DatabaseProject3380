@@ -29,6 +29,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                     <li><a asp-area="" asp-action="About"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact"><span class="glyphicon glyphicon-earphone"></span> Contact</a></li>
                     <li><a asp-area="" asp-controller="Attractions" asp-action="index"><span class="glyphicon glyphicon-film"></span> Attractions</a></li>
@@ -42,9 +43,9 @@
         </div>
     </nav>
     <div class="container body-content">
-        
+        <hr />
         @RenderBody()
-        
+        <hr />
         <footer class="navbar navbar-fixed-bottom navbar">
             <hr />
             <center><p>&copy; 2018 - Theme Park - Team 4</p></center>
