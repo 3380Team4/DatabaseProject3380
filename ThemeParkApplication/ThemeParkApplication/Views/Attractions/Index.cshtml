@@ -9,73 +9,55 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
+<br />
+
 <br /><br />
 <h2>Attractions</h2>
 
-@if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
-{
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-}
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Attraction Name
-            </th>
-            <th>
-                Height Requirement
-            </th>
-            <th>
-                Age Requirement
-            </th>
-            <th>
-                Attraction Status
 
-            </th>
-            <th>
-                Attraction Type
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Manager)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AttractionName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HeightRequirement)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AgeRequirement)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AttractionStatusNavigation.AttractionStatus)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AttractionTypeNavigation.AttractionType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Manager.EmployeeId)
-                </td>
-                <td> <a asp-action="Details" asp-route-id="@item.AttractionId">Details</a></td>
+
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        <div class="card" style="width: 15rem;">
+            <div class="card-body">
+
+                <h5 class="card-title">
+                @item.AttractionName
+                @if (item.AttractionStatusNavigation.AttractionStatus == "OPEN")
+                {
+                    <span class="badge badge-success">OPEN</span>
+                } else {  
+                    <span class="badge badge-danger">CLOSED</span>
+                }
+                </h5>
+
+
+                @if (item.AgeRequirement != null)
+                {
+                    <h6>Age <span class="badge badge-pill badge-warning">@item.AgeRequirement years +</span></h6>
+                }
+           
+                @if (item.HeightRequirement != null)
+                {
+                    <h6>Height <span class="badge badge-pill badge-warning">@item.HeightRequirement inches+</span></h6>
+                }
                 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
                 {
-                <td>
-
-                    <a asp-action="Edit" asp-route-id="@item.AttractionId">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.AttractionId">Delete</a> |
-                    <a asp-area="" asp-controller="Attractions" asp-action="Report">report</a>
-                </td>
+                    <a class="btn btn-sm btn-success" asp-action="Edit" asp-route-id="@item.AttractionId">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.AttractionId">Delete</a>
                 }
-            </tr>
-        }
-    </tbody>
-</table>
+            </div>
+        </div>
+    }
+
+    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
+    {
+        <div class="card" style="width: 15rem;">
+            <div class="card-body">
+                <a asp-action="Create" class="btn btn-sm btn-primary">Add new</a>
+            </div>
+        </div>
+    }
+</div>
