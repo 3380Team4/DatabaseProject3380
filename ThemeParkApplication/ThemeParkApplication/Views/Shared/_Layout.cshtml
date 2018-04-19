@@ -15,9 +15,9 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
-<body>
+<body id="splash-body">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo0" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ThemePark</a>
@@ -39,7 +39,6 @@
     </nav>
 
     <div class="container body-content">
-
         @RenderBody()
 
         <footer class="navbar navbar-fixed-bottom">
