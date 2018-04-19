@@ -190,11 +190,25 @@ namespace ThemeParkApplication.Controllers
 
         public async Task<IActionResult> generateReportAsync(string YearNumber, string MonthNumber)
         {
-            var query = String.Format("SELECT * FROM dbo.Maintenance Where (Work_Start_Date Between '{0}/01/{1}' and '{0}/31/{1}')", MonthNumber, YearNumber);
+            var month = Int32.Parse(MonthNumber);
+            var Year = Int32.Parse(YearNumber);
+
+            if (month == 12)
+            {
+                month = 1;
+                Year++;
+
+            }
+            else
+            {
+                month++;
+            }
+            var toMonth = month.ToString();
+            var toYear = Year.ToString();
+
+            var query = String.Format("SELECT * FROM dbo.Maintenance Where (Work_Start_Date >= '{0}/01/{1}' and Work_Start_Date < '{2}/01/{3}')", MonthNumber, YearNumber, toMonth, toYear);
             var report = _context.Maintenance.FromSql(query);
             return View(await report.ToListAsync());
-
-
         }
     }
 }
