@@ -55,6 +55,8 @@ namespace ThemeParkApplication.Controllers
             ViewData["ConcId"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionId");
             ViewData["ItemType"] = new SelectList(_context.ItemTypeTable, "ItemTypeIndex", "ItemType");
             return View();
+
+
         }
 
         // POST: Merchandise/Create

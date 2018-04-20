@@ -7,6 +7,7 @@
     <environment include="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <link rel="stylesheet" href="~/css/site.css" />
+        <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"
@@ -23,11 +24,11 @@
         <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ThemePark</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active"><a class="nav-link" asp-area="" asp-action="About"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
-                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact"><span class="glyphicon glyphicon-earphone"></span> Contact</a></liclass="nav-item">
-                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Attractions" asp-action="index"><span class="glyphicon glyphicon-film"></span> Attractions</a></li>
-                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Concessions" asp-action="index"><span class="glyphicon glyphicon-glass"></span> Concessions</a></li>
-                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Merchandise" asp-action="index"><span class="glyphicon glyphicon-home"></span> Merchandise</a></li>
+                <li class="nav-item active"><a class="nav-link" asp-area="" asp-action="About"><i class="fas fa-home"></i> About</a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact"><i class="fas fa-envelope-open"></i> Contact</a></liclass="nav-item">
+                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Attractions" asp-action="index"><i class="fas fa-camera"></i> Attractions</a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Concessions" asp-action="index"><i class="fas fa-utensils"></i> Concessions</a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Merchandise" asp-action="index"><i class="fas fa-dollar-sign"></i> Merchandise</a></li>
                 @await Html.PartialAsync("_SecureNavLayout")
             </ul>
             @await Html.PartialAsync("_LoginLoutNameLayout")
