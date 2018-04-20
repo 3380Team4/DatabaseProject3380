@@ -20,12 +20,32 @@ namespace ThemeParkApplication.Controllers
         }
         [AllowAnonymous]
         // GET: Attractions
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            var themeparkdbContext = _context.Attractions.Include(a => a.AttractionStatusNavigation)
+            ViewData["ShowOpenParm"] = String.IsNullOrEmpty(sortOrder) ? "show_open" : "show_open";
+            ViewData["ShowClosedParm"] = String.IsNullOrEmpty(sortOrder) ? "show_closed" : "show_closed";
+            ViewData["ShowAllParm"] = String.IsNullOrEmpty(sortOrder) ? "show_all" : "show_all";
+
+            var themeparkdbContext = from s in _context.Attractions.Include(a => a.AttractionStatusNavigation)
                 .Include(a => a.AttractionTypeNavigation)
-                .Include(a => a.Manager);
-            return View(await themeparkdbContext.ToListAsync());
+                .Include(a => a.Manager)
+                       select s;
+            switch (sortOrder)
+            {
+                case "show_open":
+                    //  concessions = concessions.OrderByDescending(s => s.ConcessionName);
+                    themeparkdbContext = themeparkdbContext.Where(s => s.AttractionStatus.Equals(0));
+                    break;
+                case "show_closed":
+                    themeparkdbContext = themeparkdbContext.Where(s => s.AttractionStatus.Equals(1));
+                    break;
+                case "show_all":
+                    themeparkdbContext = themeparkdbContext.Where(s => s.AttractionStatus.Equals(1) || s.AttractionStatus.Equals(0));
+                    break;
+                default:
+                    break;
+            }
+            return View(await themeparkdbContext.AsNoTracking().ToListAsync());
         }
         
 

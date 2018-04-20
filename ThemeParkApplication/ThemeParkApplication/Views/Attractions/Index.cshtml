@@ -13,54 +13,62 @@
 
 <h2>Attractions <span class="badge badge-pill badge-warning">@Model.Count()</span></h2>
 <hr />
+<div class="btn-group" role="group" aria-label="">
+    <a class="btn btn-secondary btn-outline-success" asp-action="Index" asp-route-sortOrder="@ViewData["ShowOpenParm"]">Show Only Open</a>
+    <a class="btn btn-secondary btn-outline-danger" asp-action="Index" asp-route-sortOrder="@ViewData["ShowClosedParm"]">Show Closed</a>
+    <a class="btn btn-secondary btn-outline-info" asp-action="Index" asp-route-sortOrder="@ViewData["ShowAllParm"]">Show All</a>
+</div>
 
+
+
+<hr />
 
 
 <div class="row">
 
     @foreach (var item in Model)
     {
-    <div class="card mb-3 ml-3" style="width: 22rem;">
-        <img class="card-img-top" src="~/images/alibaba.JPG" alt="Card image cap">
-        <div class="card-body">
+        <div class="card mb-3 ml-3" style="width: 22rem;">
+            <img class="card-img-top" src="~/images/alibaba.JPG" alt="Card image cap">
+            <div class="card-body">
 
-            <h5 class="card-title">
-                @item.AttractionName
-                @if (item.AttractionStatusNavigation.AttractionStatus == "OPEN")
-            {
-                <span class="badge badge-success float-right">OPEN</span>
-        }
-        else
-        {
-            <span class="badge badge-danger float-right">CLOSED</span>
-    }
-            </h5>
-            @if (item.AgeRequirement != null)
-        {
-            <h6>Minimum Age <span class="badge-pill badge-info">@item.AgeRequirement years +</span></h6>
-    }
-    else
-    {
-        <h6>Minimum Age <span class="badge-pill badge-info">All</span></h6>
-}
+                <h5 class="card-title">
+                    @item.AttractionName
+                    @if (item.AttractionStatusNavigation.AttractionStatus == "OPEN")
+                    {
+                        <span class="badge badge-success float-right">OPEN</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-danger float-right">CLOSED</span>
+                    }
+                </h5>
+                @if (item.AgeRequirement != null)
+                {
+                    <h6>Minimum Age <span class="badge-pill badge-info">@item.AgeRequirement years +</span></h6>
+                }
+                else
+                {
+                    <h6>Minimum Age <span class="badge-pill badge-info">All</span></h6>
+                }
 
-            @if (item.HeightRequirement != null)
-        {
-            <h6>Minimum Height <span class="badge-pill badge-info">@item.HeightRequirement inches+</span></h6>
-    }
-    else
-    {
-        <h6>Minimum Height <span class="badge-pill badge-info">All</span></h6>
+                @if (item.HeightRequirement != null)
+                {
+                    <h6>Minimum Height <span class="badge-pill badge-info">@item.HeightRequirement inches+</span></h6>
+                }
+                else
+                {
+                    <h6>Minimum Height <span class="badge-pill badge-info">All</span></h6>
 
 
-}
-            @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
-        {
-            <a class="btn btn-sm btn-outline-primary col-5" asp-action="Edit" asp-route-id="@item.AttractionId"><i class="fas fa-edit"></i> Edit</a>
-            <a class="btn btn-sm btn-outline-danger col-5 float-right" asp-action="Delete" asp-route-id="@item.AttractionId"><i class="fas fa-trash"></i> Delete</a>
-    }
+                }
+                @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
+                {
+                    <a class="btn btn-sm btn-outline-primary col-5" asp-action="Edit" asp-route-id="@item.AttractionId"><i class="fas fa-edit"></i> Edit</a>
+                    <a class="btn btn-sm btn-outline-danger col-5 float-right" asp-action="Delete" asp-route-id="@item.AttractionId"><i class="fas fa-trash"></i> Delete</a>
+                }
+            </div>
         </div>
-    </div>
     }
 
     @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))

@@ -22,7 +22,11 @@ namespace ThemeParkApplication.Controllers
         // GET: Employees
         public async Task<IActionResult> Index()
         {
-            var themeparkdbContext = _context.Employees.Include(e => e.JobTitleNavigation).Include(e => e.Supervisor).Include(e => e.WorksAtAttrNavigation).Include(e => e.WorksAtConcNavigation);
+            var themeparkdbContext = _context.Employees
+                .Include(e => e.JobTitleNavigation)
+                .Include(e => e.Supervisor)
+                .Include(e => e.WorksAtAttrNavigation)
+                .Include(e => e.WorksAtConcNavigation);
             return View(await themeparkdbContext.ToListAsync());
         }
 

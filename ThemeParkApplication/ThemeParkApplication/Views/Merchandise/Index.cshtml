@@ -9,6 +9,7 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 <br /><br />
+      
 <h2>Merchandise <span class="badge badge-pill badge-warning">@Model.Count()</span></h2>
 <hr />
 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
@@ -20,19 +21,19 @@
     <thead class="thead-light">
         <tr>
             <th>
-                <button class="btn btn-sm btn-outline-dark"> Item Name <i class="fas fa-sort-alpha-up"></i></button>
+                <a class="btn btn-secondary btn-outline-dark" asp-action="Index" asp-route-sortOrder="@ViewData["SortByItemName"]">Item Name <i class="fas fa-sort-alpha-up"></i></a>
             </th>
             <th>
-                <button class="btn btn-sm btn-outline-dark">@Html.DisplayNameFor(model => model.Price)  <i class="fas fa-sort-amount-up"></i></button>
+                <a class="btn btn-secondary btn-outline-dark" asp-action="Index" asp-route-sortOrder="@ViewData["SortByPrice"]">Price <i class="fas fa-sort-numeric-up"></i></a>
             </th>
             <th>
-                <button class="btn btn-sm btn-outline-dark">Attraction <i class="fas fa-sort-alpha-up"></i></button>
+                <a class="btn btn-secondary btn-outline-dark" asp-action="Index" asp-route-sortOrder="@ViewData["SortByAttraction"]">Attraction <i class="fas fa-sort-alpha-up"></i></a>
             </th>
             <th>
-                <button class="btn btn-sm btn-outline-dark">Concession<i class="fas fa-sort-alpha-up"></i></button>
+                <a class="btn btn-secondary btn-outline-dark" asp-action="Index" asp-route-sortOrder="@ViewData["SortByConcession"]">Concession <i class="fas fa-sort-alpha-up"></i></a>
             </th>
             <th>
-                <button class="btn btn-sm btn-outline-dark">Item Type <i class="fas fa-sort-alpha-up"></i></button>
+                <a class="btn btn-secondary btn-outline-dark" asp-action="Index" asp-route-sortOrder="@ViewData["SortByItemType"]">Item Type <i class="fas fa-sort-alpha-up"></i></a>
             </th>
             <th></th>
         </tr>
@@ -60,7 +61,6 @@
                     @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
                     {
                         <a asp-action="Edit" asp-route-id="@item.ItemId"><i class="fas fa-edit"></i> Edit</a>
-                        <a asp-action="Details" asp-route-id="@item.ItemId"><i class="fas fa-info-circle"></i> Details</a>
                         <a class="text-danger" asp-action="Delete" asp-route-id="@item.ItemId"><i class="fas fa-trash"></i> Delete</a>
 
                     }

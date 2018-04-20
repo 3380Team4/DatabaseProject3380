@@ -20,9 +20,54 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Merchandise
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            var themeparkdbContext = _context.Merchandise.Include(m => m.Attr).Include(m => m.Conc).Include(m => m.ItemTypeNavigation);
+            ViewData["SortByItemName"] = sortOrder == "sort_item_name_desc"?"sort_item_name_asc" : "sort_item_name_desc";
+            ViewData["SortByPrice"] = sortOrder == "sort_price_desc" ? "sort_price_asc" : "sort_price_desc";
+            ViewData["SortByAttraction"] = sortOrder == "sort_attraction_desc" ? "sort_attraction_asc" : "sort_attraction_desc";
+            ViewData["SortByConcession"] = sortOrder == "sort_concession_desc" ? "sort_concession_asc" : "sort_concession_desc";
+            ViewData["SortByItemType"] = sortOrder == "sort_item_type_desc" ? "sort_item_type_asc" : "sort_item_type_desc";
+            var themeparkdbContext = from s in _context.Merchandise.Include(m => m.Attr).Include(m => m.Conc).Include(m => m.ItemTypeNavigation)
+                                     select s;      
+            switch (sortOrder)
+            {
+                case "sort_item_name_asc":
+                    themeparkdbContext = themeparkdbContext.OrderBy(s => s.ItemName);
+                    break;
+
+                case "sort_item_name_desc":
+                    themeparkdbContext = themeparkdbContext.OrderByDescending(s => s.ItemName);
+                    break;
+                case "sort_price_asc":
+                    themeparkdbContext = themeparkdbContext.OrderBy(s => s.Price);
+                    break;
+
+                case "sort_price_desc":
+                    themeparkdbContext = themeparkdbContext.OrderByDescending(s => s.Price);
+                    break;
+                case "sort_attraction_asc":
+                    themeparkdbContext = themeparkdbContext.OrderBy(s => s.Attr.AttractionName);
+                    break;
+                case "sort_attraction_desc":
+                    themeparkdbContext = themeparkdbContext.OrderByDescending(s => s.Attr.AttractionName);
+                    break;
+                case "sort_concession_asc":
+                    themeparkdbContext = themeparkdbContext.OrderBy(s => s.Conc.ConcessionName);
+                    break;
+                case "sort_concession_desc":
+                    themeparkdbContext = themeparkdbContext.OrderByDescending(s => s.Conc.StoreType);
+                    break;
+                case "sort_item_type_asc":
+                    themeparkdbContext = themeparkdbContext.OrderBy(s => s.ItemType);
+                    break;
+                case "sort_item_type_desc":
+                    themeparkdbContext = themeparkdbContext.OrderByDescending(s => s.ItemType);
+                    break;
+                default:
+                    break;
+            }
+
+
             return View(await themeparkdbContext.ToListAsync());
         }
 
