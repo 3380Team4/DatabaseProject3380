@@ -8,18 +8,18 @@
 {
     <li class="nav-item" style="float:right; padding-left:20px;">
         <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="form-inline my-2 my-lg-0">
-            <a class="nav-link badge badge-pill badge-light" asp-area="" asp-controller="Home" asp-action="Index">Hello @UserManager.GetUserName(User)</a>
+            <a class="nav-link btn btn-light" asp-area="" asp-controller="Home" asp-action="Index">Hello @UserManager.GetUserName(User)</a>
             &nbsp
-            <button type="submit" class="btn  badge badge-pill badge-danger">Log out</button>
+            <button type="submit" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i>Log out</button>
         </form>
     </li>
 }
 else
 {
     <form class="form-inline">
-        <a class="nav-link btn  badge badge-pill badge-info" asp-area="" asp-controller="Account" asp-action="Register"><span class="glyphicon glyphicon-star"></span> Register</a>
+        <a class="nav-link btn btn-info" asp-area="" asp-controller="Account" asp-action="Register"><span class="fas fa-user-plus"></span> Register</a>
         &nbsp
-        <a class="nav-link btn  badge badge-pill badge-warning" asp-area="" asp-controller="Account" asp-action="Login"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
+        <a class="nav-link btn  btn-warning" asp-area="" asp-controller="Account" asp-action="Login"><span class="fas fa-sign-in-alt"></span> Log in</a>
     </form>
 
 
