@@ -177,30 +177,15 @@ namespace ThemeParkApplication.Controllers
             return _context.Closures.Any(e => e.ClosureId == id);
         }
 
-        public async Task<IActionResult> generateReportAsync(string YearNumber, string MonthNumber)
+        public async Task<IActionResult> generateReportAsync(string YearNumber, string MonthNumber, string ToYearNumber, string ToMonthNumber)
         {
-            var month = Int32.Parse(MonthNumber);
-            var Year = Int32.Parse(YearNumber);
-
-            if (month==12)
-            {
-                month = 1;
-                Year++;
-
-            }
-            else
-            {
-                month++;
-            }
-            var toMonth = month.ToString();
-            var toYear = Year.ToString();
-
-            var query = String.Format("SELECT * FROM dbo.Closures Where (Reason = 2 and Date_Closure >= '{0}/01/{1}' and Date_Closure <'{2}/01/{3}')", MonthNumber, YearNumber, toMonth, toYear);
+            TempData["year"] = YearNumber;
+            TempData["month"] = MonthNumber;
+            TempData["toYear"] = ToYearNumber;
+            TempData["toMonth"] = ToMonthNumber;
+            var query = String.Format("SELECT * FROM dbo.Closures Where (Reason = 2 and Date_Closure >= '{0}/01/{1}' and Date_Closure <'{2}/01/{3}')", MonthNumber, YearNumber, ToMonthNumber, ToYearNumber);
             var report = _context.Closures.FromSql(query);
             return View(await report.ToListAsync());
-
-
         }
-
     }
 }

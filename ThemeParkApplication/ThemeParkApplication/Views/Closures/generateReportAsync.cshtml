@@ -3,23 +3,37 @@
     ViewData["Title"] = "generateReportAsync";
 }
 <br />
-<h2>generateReportAsync</h2>
+<h2>Park Closed</h2>
+<p>From  @TempData["month"]/@TempData["year"] To   @TempData["toMonth"]/@TempData["toYear"]</p>
 
 <table class="table">
     <thead>
         <tr>
             <th>
+                Close ID
+            </th>
+            <th>
+                Date Closed
+            </th>
+            <th>
+                Duration
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateClosure)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClosureId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateClosure.Month)/@Html.DisplayFor(modelItem => item.DateClosure.Day)/@Html.DisplayFor(modelItem => item.DateClosure.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DurationClosure)
+            </td>
+        </tr>
         }
     </tbody>
 </table>
