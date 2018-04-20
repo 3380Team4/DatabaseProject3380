@@ -24,24 +24,25 @@ namespace ThemeParkApplication.Controllers
         {
           //  var themeparkdbContext = _context.Concessions.Include(c => c.ConcessionStatusNavigation).Include(c => c.Manager).Include(c => c.StoreTypeNavigation);
 
-            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewData["TypeSortParm"] = sortOrder == "Type" ? "type_desc" : "Type";
-
+            ViewData["ShowOpenParm"] = String.IsNullOrEmpty(sortOrder) ? "show_open" : "show_open";
+            ViewData["ShowClosedParm"] = String.IsNullOrEmpty(sortOrder) ? "show_closed" : "show_closed";
+            ViewData["ShowAllParm"] = String.IsNullOrEmpty(sortOrder) ? "show_all" : "show_all";
             var concessions = from s in _context.Concessions.Include(c => c.ConcessionStatusNavigation).Include(c => c.Manager).Include(c => c.StoreTypeNavigation)
                               select s;
             switch (sortOrder)
             {
-                case "name_desc":
-                    concessions = concessions.OrderByDescending(s => s.ConcessionName);
+                case "show_open":
+                  //  concessions = concessions.OrderByDescending(s => s.ConcessionName);
+                    concessions = concessions.Where(s => s.ConcessionStatus.Equals(0));
                     break;
-                case "type_desc":
-                    concessions = concessions.OrderByDescending(s => s.StoreType);
+                case "show_closed":
+                    concessions = concessions.Where(s => s.ConcessionStatus.Equals(1));
                     break;
-                case "Type":
-                    concessions = concessions.OrderBy(s => s.StoreType);
+                case "show_all":
+                    concessions = concessions.Where(s => s.ConcessionStatus.Equals(1) || s.ConcessionStatus.Equals(0));
                     break;
+
                 default:
-                    concessions = concessions.OrderBy(s => s.ConcessionName);
                     break;
             }
             return View(await concessions.AsNoTracking().ToListAsync());

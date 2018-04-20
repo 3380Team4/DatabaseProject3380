@@ -16,8 +16,14 @@
 
 <h2>Concessions <span class="badge badge-pill badge-warning">@Model.Count()</span></h2>
 <hr />
-<a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">Sort By Name</a> |
-<a asp-action="Index" asp-route-sortOrder="@ViewData["TypeSortParm"]">Sort By Type</a>
+<div class="btn-group" role="group" aria-label="">
+    <a class = "btn btn-secondary btn-outline-success" asp-action="Index" asp-route-sortOrder="@ViewData["ShowOpenParm"]">Show Only Open</a>
+    <a class = "btn btn-secondary btn-outline-danger" asp-action="Index" asp-route-sortOrder="@ViewData["ShowClosedParm"]">Show Closed</a>
+    <a class = "btn btn-secondary btn-outline-info" asp-action="Index" asp-route-sortOrder="@ViewData["ShowAllParm"]">Show All</a>
+</div>
+
+
+
 <hr />
 <div class="row">
 

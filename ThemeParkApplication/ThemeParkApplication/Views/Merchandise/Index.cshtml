@@ -9,31 +9,30 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 <br /><br />
-<h2>Merchandise</h2>
-
+<h2>Merchandise <span class="badge badge-pill badge-warning">@Model.Count()</span></h2>
+<hr />
 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
 {
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
+    <a asp-action="Create" class="btn btn-sm btn-success"><i class="fas fa-plus-square"></i> Add New Merchandise</a>
 }
-<table class="table">
-    <thead>
+<hr />
+<table class="table table-striped">
+    <thead class="thead-light">
         <tr>
             <th>
-                Item Name
+                <button class="btn btn-sm btn-outline-dark"> Item Name <i class="fas fa-sort-alpha-up"></i></button>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                <button class="btn btn-sm btn-outline-dark">@Html.DisplayNameFor(model => model.Price)  <i class="fas fa-sort-amount-up"></i></button>
             </th>
             <th>
-                Attraction ID
+                <button class="btn btn-sm btn-outline-dark">Attraction <i class="fas fa-sort-alpha-up"></i></button>
             </th>
             <th>
-                Concession ID
+                <button class="btn btn-sm btn-outline-dark">Concession<i class="fas fa-sort-alpha-up"></i></button>
             </th>
             <th>
-                Item Type
+                <button class="btn btn-sm btn-outline-dark">Item Type <i class="fas fa-sort-alpha-up"></i></button>
             </th>
             <th></th>
         </tr>
@@ -46,23 +45,23 @@
                     @Html.DisplayFor(modelItem => item.ItemName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    $@Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Attr.AttractionId)
+                    @Html.DisplayFor(modelItem => item.Attr.AttractionName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Conc.ConcessionId)
+                    @Html.DisplayFor(modelItem => item.Conc.ConcessionName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ItemTypeNavigation.ItemType)
                 </td>
                 <td>
                     @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
-    {
-                    <a asp-action="Edit" asp-route-id="@item.ItemId">Edit</a> 
-                    <a asp-action="Details" asp-route-id="@item.ItemId">Details</a> 
-                    <a asp-action="Delete" asp-route-id="@item.ItemId">Delete</a>
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.ItemId"><i class="fas fa-edit"></i> Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.ItemId"><i class="fas fa-info-circle"></i> Details</a>
+                        <a class="text-danger" asp-action="Delete" asp-route-id="@item.ItemId"><i class="fas fa-trash"></i> Delete</a>
 
                     }
 
