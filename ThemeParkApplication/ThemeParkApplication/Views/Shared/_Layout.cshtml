@@ -21,7 +21,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ThemePark</a>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active"><a class="nav-link" asp-area="" asp-action="About"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
                 <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact"><span class="glyphicon glyphicon-earphone"></span> Contact</a></liclass="nav-item">
@@ -30,11 +30,6 @@
                 <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Merchandise" asp-action="index"><span class="glyphicon glyphicon-home"></span> Merchandise</a></li>
                     @await Html.PartialAsync("_LoginPartial")
             </ul>
-
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
         </div>
     </nav>
 

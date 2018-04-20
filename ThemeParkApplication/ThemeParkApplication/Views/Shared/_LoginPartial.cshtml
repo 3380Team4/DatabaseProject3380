@@ -4,21 +4,25 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Maintenances" asp-action="index">Mainteneances</a></li>
-        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Employees" asp-action="index">Employees</a></li>
-        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Closures" asp-action="index">Closures</a></li>
-        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Transactions" asp-action="index">Transactions</a></li>
-        <li class="nav-item" style="float:right; padding-left:20px;">
-            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Hello @UserManager.GetUserName(User)!</a>
-                <button type="submit" class="btn btn-link navbar-btn nav-link">Log out</button>
-            </form>
-        </li>
-    }
-    else
-    {
-        <li class="nav-item" style="float:right; padding-left:20px;"><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register"><span class="glyphicon glyphicon-star"></span> Register</a></li>
-        <li class="nav-item" style="float:right; padding-left:20px;"><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login"><span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
-    }
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Maintenances" asp-action="index">Mainteneances</a></li>
+    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Employees" asp-action="index">Employees</a></li>
+    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Closures" asp-action="index">Closures</a></li>
+    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Transactions" asp-action="index">Transactions</a></li>
+
+
+    <li class="nav-item" style="float:right; padding-left:20px;">
+        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="form-inline my-2 my-lg-0">
+            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Hello @UserManager.GetUserName(User)!</a>
+            <button type="submit" class="btn btn-outline-info">Log out</button>
+        </form>
+    </li>
+}
+else
+{
+        <li class="nav-item form-inline my-2 my-lg-0" style="float:right; padding-left:20px;"><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register"><span class="glyphicon glyphicon-star"></span> Register</a></li>
+        <li class="nav-item form-inline my-2 my-lg-0" style="float:right; padding-left:20px;"><a class="nav-link btn btn-outline-info" asp-area="" asp-controller="Account" asp-action="Login"><span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
+
+  }
+        
