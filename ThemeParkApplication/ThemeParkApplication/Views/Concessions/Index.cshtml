@@ -11,6 +11,8 @@
 @inject UserManager<ApplicationUser> UserManager
 
 <br /><br />
+<a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">sort</a>
+
 <h2>Concessions <span class="badge badge-pill badge-warning">@Model.Count()</span></h2>
 <hr />
 <div class="row">
@@ -32,7 +34,7 @@
                         <span class="badge badge-danger float-right">CLOSED</span>
                     }
                 </h5>
-      
+
                 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
                 {
                     <a class="btn btn-sm btn-outline-primary col-5" asp-action="Edit" asp-route-id="@item.ConcessionId"><i class="fas fa-edit"></i> Edit</a>

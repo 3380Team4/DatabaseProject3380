@@ -20,10 +20,31 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Concessions
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            var themeparkdbContext = _context.Concessions.Include(c => c.ConcessionStatusNavigation).Include(c => c.Manager).Include(c => c.StoreTypeNavigation);
-            return View(await themeparkdbContext.ToListAsync());
+          //  var themeparkdbContext = _context.Concessions.Include(c => c.ConcessionStatusNavigation).Include(c => c.Manager).Include(c => c.StoreTypeNavigation);
+
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["TypeSortParm"] = sortOrder == "Type" ? "type_desc" : "Type";
+
+            var concessions = from s in _context.Concessions.Include(c => c.ConcessionStatusNavigation).Include(c => c.Manager).Include(c => c.StoreTypeNavigation)
+                              select s;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    concessions = concessions.OrderByDescending(s => s.ConcessionName);
+                    break;
+                case "type_desc":
+                    concessions = concessions.OrderByDescending(s => s.StoreType);
+                    break;
+                case "Type":
+                    concessions = concessions.OrderBy(s => s.StoreType);
+                    break;
+                default:
+                    concessions = concessions.OrderBy(s => s.ConcessionName);
+                    break;
+            }
+            return View(await concessions.AsNoTracking().ToListAsync());
         }
 
         // GET: Concessions/Details/5
