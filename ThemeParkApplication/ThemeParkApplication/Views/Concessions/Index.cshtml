@@ -11,73 +11,43 @@
 @inject UserManager<ApplicationUser> UserManager
 
 <br /><br />
-<h2>Concessions</h2>
+<h2>Concessions <span class="badge badge-pill badge-warning">@Model.Count()</span></h2>
+<hr />
+<div class="row">
 
-@if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
-{
-    <p>
-        <a asp-action="Create">Create New</a>
+    @foreach (var item in Model)
+    {
+        <div class="card mb-3 ml-3" style="width: 34rem;">
+            <img class="card-img-top" src="~/images/alibaba.JPG" alt="Card image cap">
+            <div class="card-body">
 
-    </p>}
-
-
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Concession Name
-            </th>
-            <th>
-                Opening Time
-            </th>
-            <th>
-                Closing Time
-            </th>
-            <th>
-                Concession Status
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Manager)
-            </th>
-            <th>
-                Store Type
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ConcessionName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OpeningTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ClosingTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ConcessionStatusNavigation.ConcessionStatus)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Manager.EmployeeId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StoreTypeNavigation.StoreType)
-                </td>
-                <td> <a asp-action="Details" asp-route-id="@item.ConcessionId">Details</a> |</td>
-                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Manager") || User.IsInRole("Admin"))
+                <h5 class="card-title">
+                    @item.ConcessionName
+                    @if (item.ConcessionStatusNavigation.ConcessionStatus == "OPEN")
+                    {
+                        <span class="badge badge-success float-right">OPEN</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-danger float-right">CLOSED</span>
+                    }
+                </h5>
+      
+                @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
                 {
-                    <td>
-
-                        <a asp-action="Edit" asp-route-id="@item.ConcessionId">Edit</a> |
-                        <a asp-action="Delete" asp-route-id="@item.ConcessionId">Delete</a>
-                    </td>
+                    <a class="btn btn-sm btn-outline-primary col-5" asp-action="Edit" asp-route-id="@item.ConcessionId"><i class="fas fa-edit"></i> Edit</a>
+                    <a class="btn btn-sm btn-outline-danger col-5 float-right" asp-action="Delete" asp-route-id="@item.ConcessionId"><i class="fas fa-trash"></i> Delete</a>
                 }
-            </tr>
-        }
-    </tbody>
-</table>
+            </div>
+        </div>
+    }
+
+    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
+    {
+        <div class="card mb-3 ml-3 text-center" style="width: 20rem;">
+            <div class="card-body">
+                <a asp-action="Create" class="btn btn-sm btn-success btn-block"><i class="fas fa-plus-square"></i> Add New Concession</a>
+            </div>
+        </div>
+    }
+</div>
