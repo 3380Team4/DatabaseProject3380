@@ -1,6 +1,17 @@
 ﻿@{
+    ViewData["Title"] = "Concessions";
+}
+
+@using Microsoft.AspNetCore.Identity
+@using ThemeParkApplication.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
     ViewData["Title"] = "Home Page";
 }
+@model IEnumerable<ThemeParkApplication.Models.Transactions>
 
 <!--
 <style>
@@ -10,58 +21,67 @@
 </style>
 
 -->
+@if (SignInManager.IsSignedIn(User))
+{
 
-<div class="jumbotron text-center">
-    <h1>Welcome to Our Theme Park</h1>
-    <p class="lead">This is a database project as part of Junior year database course at University of Houston for Spring 2018.</p>
-    <a class="btn btn-lg btn-primary" href="../../components/navbar/" role="button">View our attractions >></a>
-</div>
-<div class="container">
-    <div class="row justify-content-sm-center">
-        <h4><span class="badge badge-info">Meet Team <span class="badge badge-light">4</span></span></h4>
-    </div>
-    <hr />
-    <div class="row justify-content-center">
-        <div class="card bg-light mr-2" style="width: 12rem;">
-            <img class="card-img-top" src="~/images/user2.svg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Giang Ha</h5>
-                <p class="card-text">giangha179@yahoo.com</p>
-            </div>
-        </div>
-        <div class="card mr-2" style="width: 12rem;">
-            <img class="card-img-top" src="~/images/user3.svg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Jason Hachach</h5>
-                <p class="card-text">jason.hachach18@yahoo.com</p>
-            </div>
-        </div>
-        <div class="card bg-light mr-2" style="width: 12rem;">
-            <img class="card-img-top" src="~/images/user4.svg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Harrison Hayes</h5>
-                <span class="badge badge-pill badge-info"></span>
-                <p class="card-text">harrisonhayes97@yahoo.com
-            </div>
-        </div>
-        <div class="card mr-2" style="width: 12rem;">
-            <img class="card-img-top" src="~/images/user2.svg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Matthew Garza</h5>
-                <p class="card-text">matthew@somemail.com</p>
-            </div>
-        </div>
-        <div class="card bg-light mr-2" style="width: 12rem;">
-            <img class="card-img-top" src="~/images/user3.svg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Navin Ghimire</h5>
-                <p class="card-text">ghimire.navin@gmail.com</p>
-            </div>
-        </div>
-    </div>
-    <hr />
+    <h1>Reports for admin and managers will be generated here...</h1>
+}
+else
+{
 
-</div>
+
+    <div class="jumbotron text-center">
+        <h1>Welcome to Our Theme Park</h1>
+        <p class="lead">This is a database project as part of Junior year database course at University of Houston for Spring 2018.</p>
+        <a class="btn btn-lg btn-primary" href="../../components/navbar/" role="button">View our attractions >></a>
+    </div>
+    <div class="container">
+        <div class="row justify-content-sm-center">
+            <h4><span class="badge badge-info">Meet Team <span class="badge badge-light">4</span></span></h4>
+        </div>
+        <hr />
+        <div class="row justify-content-center">
+            <div class="card bg-light mr-2" style="width: 12rem;">
+                <img class="card-img-top" src="~/images/user2.svg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Giang Ha</h5>
+                    <p class="card-text">giangha179@yahoo.com</p>
+                </div>
+            </div>
+            <div class="card mr-2" style="width: 12rem;">
+                <img class="card-img-top" src="~/images/user3.svg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Jason Hachach</h5>
+                    <p class="card-text">jason.hachach18@yahoo.com</p>
+                </div>
+            </div>
+            <div class="card bg-light mr-2" style="width: 12rem;">
+                <img class="card-img-top" src="~/images/user4.svg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Harrison Hayes</h5>
+                    <span class="badge badge-pill badge-info"></span>
+                    <p class="card-text">harrisonhayes97@yahoo.com
+                </div>
+            </div>
+            <div class="card mr-2" style="width: 12rem;">
+                <img class="card-img-top" src="~/images/user2.svg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Matthew Garza</h5>
+                    <p class="card-text">matthew@somemail.com</p>
+                </div>
+            </div>
+            <div class="card bg-light mr-2" style="width: 12rem;">
+                <img class="card-img-top" src="~/images/user3.svg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Navin Ghimire</h5>
+                    <p class="card-text">ghimire.navin@gmail.com</p>
+                </div>
+            </div>
+        </div>
+        <hr />
+
+    </div>
+}
 <!--
 
 <div id="front-page">
