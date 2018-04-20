@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ThemeParkApplication.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+<ul class="navbar-nav">
+    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Maintenances" asp-action="index">Maintenances</a></li>
+    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Employees" asp-action="index">Employees</a></li>
+    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Closures" asp-action="index">Closures</a></li>
+    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Transactions" asp-action="index">Transactions</a></li>
+</ul>
+} 
