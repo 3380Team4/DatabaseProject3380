@@ -9,8 +9,8 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-<br /><br />
-<h2>Maintenance</h2>
+
+
 
 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
 {
@@ -19,10 +19,16 @@
     </p>
 }
 
-<form action="Maintenances/generateReportAsync" method="post">
-    @Html.DropDownList("YearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
-    @Html.DropDownList("MonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
-    <input type="submit" value="Generate Report" />
+    <form action="Maintenances/NumberOfMaintenances" method="post">
+        <a class="btn btn-secondary btn-success">@Html.DropDownList("YearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")</a>
+        <a class="btn btn-secondary btn-success">
+            @Html.DropDownList("MonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")</a>
+                <b>To</b>
+        <a class="btn btn-secondary btn-success">
+            @Html.DropDownList("ToYearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")</a>
+        <a class="btn btn-secondary btn-success">
+            @Html.DropDownList("ToMonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")</a>
+        <a class="btn btn-primary btn-primary"><input type="submit" value="Generate Number of rides need maintenance" /></a>
 </form>
 
 <h2>Maintenance <span class="badge badge-pill badge-warning">@Model.Count()</span></h2>

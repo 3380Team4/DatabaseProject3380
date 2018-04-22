@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ThemeParkApplication.Models.Maintenance>
+@{
+    ViewData["Title"] = "NumberOfMaintenances";
+}
+
+<h2>Number Of Maintenances <span class="badge badge-pill badge-warning">@Model.Count()</span></h2>
+<p>From  @TempData["month"]/@TempData["year"] To   @TempData["toMonth"]/@TempData["toYear"]</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Work Order ID
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Work Order Type
+            </th>
+            <th>
+                Concession ID
+            </th>
+            <th>
+                Attraction ID
+            </th>
+            <th>
+                Employee
+            </th>
+            <th>
+                Work Status
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkOrderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkStartDate.Month)/@Html.DisplayFor(modelItem => item.WorkStartDate.Day)/@Html.DisplayFor(modelItem => item.WorkStartDate.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConcId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AttrId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaintenanceEmployeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkStatus)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
