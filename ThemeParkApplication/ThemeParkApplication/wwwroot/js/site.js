@@ -21,7 +21,20 @@ $(document).ready(function () {
         }
     });
 
+    $("#ConcId").change(function () {
+        if ($("#ConcId option:selected").text() != "None") {
+            $("#AttrId").val("");
+        }
+   
+    });
+
+    $("#AttrId").change(function () {
+        if ($("#AttrId option:selected").text() != "None") {
+            $("#ConcId").val("");
+        }
+    });
     
     // $("body").parallax()
     console.log("JavaScript ended...");
 });
+
