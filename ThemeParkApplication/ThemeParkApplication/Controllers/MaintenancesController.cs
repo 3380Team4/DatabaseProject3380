@@ -21,18 +21,10 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Maintenances
-        public async Task<IActionResult> Index(string sortBy)
+        public async Task<IActionResult> Index()
         {
-            var themeparkdbContext = from s in _context.Maintenance.Include(m => m.Attr).Include(m => m.Conc).Include(m => m.MaintenanceEmployee).Include(m => m.OrderTypeNavigation).Include(m => m.WorkStatusNavigation)
-                                     select s;
 
-            ViewBag["mythings"] = await _context.Maintenance.Include(m => m.Attr)
-                .Include(m => m.Conc)
-                .Include(m => m.MaintenanceEmployee)
-                .Include(m => m.OrderTypeNavigation)
-                .Include(m => m.WorkStatusNavigation)
-                .SingleOrDefaultAsync();
-
+            var themeparkdbContext = _context.Maintenance.Include(m => m.Attr).Include(m => m.Conc).Include(m => m.MaintenanceEmployee).Include(m=>m.OrderTypeNavigation).Include(m=>m.WorkStatusNavigation);
             return View(await themeparkdbContext.ToListAsync());
         }
 
