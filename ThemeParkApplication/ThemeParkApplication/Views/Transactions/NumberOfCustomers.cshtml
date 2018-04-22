@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ThemeParkApplication.Models.Transactions>
+
+@{
+    ViewData["Title"] = "NumberOfCustomers";
+}
+
+<h2>Number Of Customers <span class="badge badge-pill badge-warning">@Model.Count()</span></h2>
+<p>From  @TempData["month"]/@TempData["year"] To   @TempData["toMonth"]/@TempData["toYear"]</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Transaction Id
+            </th>
+            <th>
+                Date Purchased
+            </th>
+            <th>
+                Guess ID
+            </th>
+            <th>
+                Quantity
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfSale.Month)/@Html.DisplayFor(modelItem => item.DateOfSale.Day)/@Html.DisplayFor(modelItem => item.DateOfSale.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuestId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

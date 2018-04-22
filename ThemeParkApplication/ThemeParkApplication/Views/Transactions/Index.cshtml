@@ -17,6 +17,17 @@
         <a asp-action="Create">Create New</a>
     </p>
 }
+
+<form action="Transactions/NumberOfCustomers" method="post">
+    @Html.DropDownList("YearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
+    @Html.DropDownList("MonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
+    To
+    @Html.DropDownList("ToYearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
+    @Html.DropDownList("ToMonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
+    <input type="submit" value="Generate Number of Customers" />
+</form>
+
+
 <table class="table">
     <thead>
         <tr>

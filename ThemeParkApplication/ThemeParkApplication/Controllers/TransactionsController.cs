@@ -173,5 +173,16 @@ namespace ThemeParkApplication.Controllers
         {
             return _context.Transactions.Any(e => e.TransactionId == id);
         }
+
+        public async Task<IActionResult> NumberOfCustomers(string YearNumber, string MonthNumber, string ToYearNumber, string ToMonthNumber)
+        {
+            TempData["year"] = YearNumber;
+            TempData["month"] = MonthNumber;
+            TempData["toYear"] = ToYearNumber;
+            TempData["toMonth"] = ToMonthNumber;
+            var query = String.Format("SELECT * FROM dbo.Merchandise As M, dbo.Transactions As T Where (M.Item_Type = T.Merch_ID And M.Item_Type = 3 and T.Date_Of_Sale >= '{0}/01/{1}' and T.Date_Of_Sale <'{2}/05/{3}')", MonthNumber, YearNumber, ToMonthNumber, ToYearNumber);
+            var report = _context.Transactions.FromSql(query);
+            return View(await report.ToListAsync());
+        }
     }
 }
