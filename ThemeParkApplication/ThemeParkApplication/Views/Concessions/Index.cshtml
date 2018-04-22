@@ -46,7 +46,7 @@
                     }
                 </h5>
                 <p class="badge-pill badge-info">@item.StoreTypeNavigation.StoreType <span class="badge-pill badge-infofloat-right">@item.OpeningTime</span> to <span class="badge-pill badge-info float-right">@item.ClosingTime</span></p>
-                <p class="badge-pill badge-warning">Managed by @item.Manager.FirstName @item.Manager.LastName</p>
+                <span class="badge-pill badge-warning">Managed by</span><div class="badge-pill badge-danger"> @item.Manager.FirstName @item.Manager.LastName</div><p></p>
 
                 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
                 {

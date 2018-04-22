@@ -21,9 +21,18 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Maintenances
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortBy)
         {
-            var themeparkdbContext = _context.Maintenance.Include(m => m.Attr).Include(m => m.Conc).Include(m => m.MaintenanceEmployee).Include(m => m.OrderTypeNavigation).Include(m => m.WorkStatusNavigation);
+            var themeparkdbContext = from s in _context.Maintenance.Include(m => m.Attr).Include(m => m.Conc).Include(m => m.MaintenanceEmployee).Include(m => m.OrderTypeNavigation).Include(m => m.WorkStatusNavigation)
+                                     select s;
+
+            ViewBag["mythings"] = await _context.Maintenance.Include(m => m.Attr)
+                .Include(m => m.Conc)
+                .Include(m => m.MaintenanceEmployee)
+                .Include(m => m.OrderTypeNavigation)
+                .Include(m => m.WorkStatusNavigation)
+                .SingleOrDefaultAsync();
+
             return View(await themeparkdbContext.ToListAsync());
         }
 
@@ -46,7 +55,7 @@ namespace ThemeParkApplication.Controllers
             {
                 return NotFound();
             }
-
+            
             return View(maintenance);
         }
 

@@ -25,65 +25,106 @@
     <input type="submit" value="Generate Report" />
 </form>
 
+<h2>Maintenance <span class="badge badge-pill badge-warning">@Model.Count()</span></h2>
+<hr />
+@if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
+{
+    <a asp-action="Create" class="btn btn-sm btn-success"><i class="fas fa-plus-square"></i> Add Maintenance Order</a>
+}
+<hr />
+<div>
+    <div class="float-left">
+        <div class="btn-group" role="group" aria-label="">
+            <a class="btn btn-secondary btn-danger" asp-action="Index" asp-route-sortOrder="@ViewData["ShowOpenParm"]">Requested</a>
+            <a class="btn btn-secondary btn-warning" asp-action="Index" asp-route-sortOrder="@ViewData["ShowClosedParm"]">In Progress</a>
+            <a class="btn btn-secondary btn-success" asp-action="Index" asp-route-sortOrder="@ViewData["ShowAllParm"]">Completed</a>
+        </div>
+    </div>
+    <nav class="navbar navbar-light bg-light float-right">
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+</div>
+<hr />
 
-<table class="table">
-    <thead>
+<table class="table table-striped">
+    <thead class="thead-light">
         <tr>
             <th>
-                Starting Date
+                
             </th>
             <th>
-                Finish Date
+                <a class="btn btn-secondary btn-outline-dark" asp-action="Index" asp-route-sortOrder="@ViewData["SortBy"]">Order Initiated <i class="fas fa-sort-alpha-up"></i></a>
             </th>
             <th>
-                Attraction ID
+                <a class="btn btn-secondary btn-outline-dark" asp-action="Index" asp-route-sortOrder="@ViewData["SortByPrice"]">Finish Date <i class="fas fa-sort-numeric-up"></i></a>
             </th>
             <th>
-                Concession ID
+                <a class="btn btn-secondary btn-outline-dark" asp-action="Index" asp-route-sortOrder="@ViewData["SortByAttraction"]">Attraction <i class="fas fa-sort-alpha-up"></i></a>
             </th>
             <th>
-                Maintenance Employee
+                <a class="btn btn-secondary btn-outline-dark" asp-action="Index" asp-route-sortOrder="@ViewData["SortByConcession"]">Concession <i class="fas fa-sort-alpha-up"></i></a>
             </th>
             <th>
-                Order Type
+                <a class="btn btn-secondary btn-outline-dark" asp-action="Index" asp-route-sortOrder="@ViewData["SortByItemType"]">Staff <i class="fas fa-sort-alpha-up"></i></a>
             </th>
             <th>
-                Work Status
+                <a class="btn btn-secondary btn-outline-dark" asp-action="Index" asp-route-sortOrder="@ViewData["SortByItemType"]">Type <i class="fas fa-sort-alpha-up"></i></a>
             </th>
-            <th></th>
+
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkStartDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkFinishDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Attr.AttractionId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Conc.ConcessionId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MaintenanceEmployee.EmployeeId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OrderTypeNavigation.OrderType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkStatusNavigation.WorkStatus)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.WorkOrderId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.WorkOrderId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.WorkOrderId">Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @if (item.WorkStatus == 0)
+    {
+            <div class="badge badge-danger"><i class="fas fa-plus"></i></div>
+
+}
+else if (item.WorkStatus == 1)
+{
+            <div class="badge badge-warning"><i class="fas fa-spinner"></i></div>
+
+}
+else
+{
+            <div class="badge badge-success"><i class="fas fa-check-square"></i></div>
+
+}
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkFinishDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Attr.AttractionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conc.ConcessionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaintenanceEmployee.FirstName)
+            </td>
+            <td>
+                                @Html.DisplayFor(modelItem => item.OrderTypeNavigation.OrderType)
+            </td>
+            <td>
+                @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
+        {
+            <a asp-action="Edit" asp-route-id="@item.WorkOrderId"><i class="fas fa-edit"></i> Edit</a>
+            <a class="text-danger" asp-action="Delete" asp-route-id="@item.WorkOrderId"><i class="fas fa-trash"></i> Delete</a>
+
+}
+
+            </td>
+        </tr>
         }
     </tbody>
 </table>
