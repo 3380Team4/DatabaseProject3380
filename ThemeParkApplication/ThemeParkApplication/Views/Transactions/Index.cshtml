@@ -21,17 +21,19 @@
     <thead>
         <tr>
             <th>
-                Sale Amount
+                @Html.DisplayNameFor(model => model.Merch)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Quantity)
             </th>
             <th>
+                Sale Amount
+            </th>
+
+            <th>
                 @Html.DisplayNameFor(model => model.Guest)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Merch)
-            </th>
+
             <th>
                 Seller Employee
             </th>
@@ -41,28 +43,30 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SaleAmount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Guest.CustomerFirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Merch.ItemId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SellerEmployee.EmployeeId)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Merch.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.SaleAmount)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Guest.CustomerFirstName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.SellerEmployee.EmployeeId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
         }
     </tbody>
 </table>
