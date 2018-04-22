@@ -21,11 +21,35 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Maintenances
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
+            ViewData["ShowRequestedParm"] = String.IsNullOrEmpty(sortOrder) ? "show_requested" : "show_requested";
+            ViewData["ShowInProgressParm"] = String.IsNullOrEmpty(sortOrder) ? "show_in_progress" : "show_in_progress";
+            ViewData["ShowCompletedParm"] = String.IsNullOrEmpty(sortOrder) ? "show_completed" : "show_completed";
+            ViewData["ShowAllParm"] = String.IsNullOrEmpty(sortOrder) ? "show_all" : "show_all";
+            
+            var themeparkdbContext = from s in _context.Maintenance.Include(m => m.Attr).Include(m => m.Conc).Include(m => m.MaintenanceEmployee).Include(m => m.OrderTypeNavigation).Include(m => m.WorkStatusNavigation) select s;
 
-            var themeparkdbContext = _context.Maintenance.Include(m => m.Attr).Include(m => m.Conc).Include(m => m.MaintenanceEmployee).Include(m=>m.OrderTypeNavigation).Include(m=>m.WorkStatusNavigation);
-            return View(await themeparkdbContext.ToListAsync());
+            switch (sortOrder)
+            {
+                case "show_requested":
+                    //  concessions = concessions.OrderByDescending(s => s.ConcessionName);
+                    themeparkdbContext = themeparkdbContext.Where(s => s.WorkStatus.Equals(0));
+                    break;
+                case "show_in_progress":
+                    themeparkdbContext = themeparkdbContext.Where(s => s.WorkStatus.Equals(1));
+                    break;
+                case "show_completed":
+                    themeparkdbContext = themeparkdbContext.Where(s => s.WorkStatus.Equals(2));
+                    break;
+                case "show_all":
+                    themeparkdbContext = themeparkdbContext.Where(s => s.WorkStatus.Equals(1) || s.WorkStatus.Equals(0) || s.WorkStatus.Equals(2));
+                    break;
+
+                default:
+                    break;
+            }
+             return View(await themeparkdbContext.ToListAsync());
         }
 
         // GET: Maintenances/Details/5

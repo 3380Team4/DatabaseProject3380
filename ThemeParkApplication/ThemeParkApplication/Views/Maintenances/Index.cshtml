@@ -35,9 +35,11 @@
 <div>
     <div class="float-left">
         <div class="btn-group" role="group" aria-label="">
-            <a class="btn btn-secondary btn-danger" asp-action="Index" asp-route-sortOrder="@ViewData["ShowOpenParm"]">Requested</a>
-            <a class="btn btn-secondary btn-warning" asp-action="Index" asp-route-sortOrder="@ViewData["ShowClosedParm"]">In Progress</a>
-            <a class="btn btn-secondary btn-success" asp-action="Index" asp-route-sortOrder="@ViewData["ShowAllParm"]">Completed</a>
+            <a class="btn btn-secondary btn-danger" asp-action="Index" asp-route-sortOrder="@ViewData["ShowRequestedParm"]">Requested</a>
+            <a class="btn btn-secondary btn-warning" asp-action="Index" asp-route-sortOrder="@ViewData["ShowInProgressParm"]">In Progress</a>
+            <a class="btn btn-secondary btn-success" asp-action="Index" asp-route-sortOrder="@ViewData["ShowCompletedParm"]">Completed</a>
+
+            <a class="btn btn-secondary btn-primary" asp-action="Index" asp-route-sortOrder="@ViewData["ShowAllParm"]">All</a>
         </div>
     </div>
     <nav class="navbar navbar-light bg-light float-right">
