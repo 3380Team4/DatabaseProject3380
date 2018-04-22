@@ -211,5 +211,17 @@ namespace ThemeParkApplication.Controllers
             var report = _context.Maintenance.FromSql(query);
             return View(await report.ToListAsync());
         }
+
+        public async Task<IActionResult> NumberOfMaintenances(string YearNumber, string MonthNumber, string ToYearNumber, string ToMonthNumber)
+        {
+            TempData["year"] = YearNumber;
+            TempData["month"] = MonthNumber;
+            TempData["toYear"] = ToYearNumber;
+            TempData["toMonth"] = ToMonthNumber;
+            var query = String.Format("SELECT * FROM dbo.Maintenance Where ( Work_Start_Date >= '{0}/01/{1}' and Work_Start_Date <'{2}/01/{3}')", MonthNumber, YearNumber, ToMonthNumber, ToYearNumber);
+            var report = _context.Maintenance.FromSql(query);
+            return View(await report.ToListAsync());
+        }
+
     }
 }
