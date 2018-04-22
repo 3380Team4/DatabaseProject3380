@@ -53,7 +53,7 @@
     <thead class="thead-light">
         <tr>
             <th>
-                
+
             </th>
             <th>
                 <a class="btn btn-secondary btn-outline-dark" asp-action="Index" asp-route-sortOrder="@ViewData["SortBy"]">Order Initiated <i class="fas fa-sort-alpha-up"></i></a>
@@ -79,52 +79,52 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @if (item.WorkStatus == 0)
-    {
-            <div class="badge badge-danger"><i class="fas fa-plus"></i></div>
+            <tr>
+                <td>
+                    @if (item.WorkStatus == 0)
+                    {
+                        <div class="badge badge-danger"><i class="fas fa-plus"></i></div>
 
-}
-else if (item.WorkStatus == 1)
-{
-            <div class="badge badge-warning"><i class="fas fa-spinner"></i></div>
+                    }
+                    else if (item.WorkStatus == 1)
+                    {
+                        <div class="badge badge-warning"><i class="fas fa-spinner"></i></div>
 
-}
-else
-{
-            <div class="badge badge-success"><i class="fas fa-check-square"></i></div>
+                    }
+                    else
+                    {
+                        <div class="badge badge-success"><i class="fas fa-check-square"></i></div>
 
-}
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WorkStartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WorkFinishDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Attr.AttractionName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Conc.ConcessionName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaintenanceEmployee.FirstName)
-            </td>
-            <td>
-                                @Html.DisplayFor(modelItem => item.OrderTypeNavigation.OrderType)
-            </td>
-            <td>
-                @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
-        {
-            <a asp-action="Edit" asp-route-id="@item.WorkOrderId"><i class="fas fa-edit"></i> Edit</a>
-            <a class="text-danger" asp-action="Delete" asp-route-id="@item.WorkOrderId"><i class="fas fa-trash"></i> Delete</a>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkStartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkFinishDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Attr.AttractionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Conc.ConcessionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaintenanceEmployee.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderTypeNavigation.OrderType)
+                </td>
+                <td>
+                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.WorkOrderId"><i class="fas fa-edit"></i> Edit</a>
+                        <a class="text-danger" asp-action="Delete" asp-route-id="@item.WorkOrderId"><i class="fas fa-trash"></i> Delete</a>
 
-}
+                    }
 
-            </td>
-        </tr>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
