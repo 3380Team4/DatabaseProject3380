@@ -10,30 +10,23 @@
 @inject UserManager<ApplicationUser> UserManager
 
 
-
-
-@if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
-{
-
-
-
-    <form action="Maintenances/NumberOfMaintenances" method="post">
-        <a class="btn btn-secondary btn-success">@Html.DropDownList("YearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")</a>
-        <a class="btn btn-secondary btn-success">
-            @Html.DropDownList("MonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")</a>
-                <b>To</b>
-        <a class="btn btn-secondary btn-success">
-            @Html.DropDownList("ToYearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")</a>
-        <a class="btn btn-secondary btn-success">
-            @Html.DropDownList("ToMonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")</a>
-        <a class="btn btn-primary btn-primary"><input type="submit" value="Generate Number of rides need maintenance" /></a>
-</form>
-}
 <h2>Maintenance <span class="badge badge-pill badge-warning">@Model.Count()</span></h2>
 <hr />
 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
 {
     <a asp-action="Create" class="btn btn-sm btn-success"><i class="fas fa-plus-square"></i> Add Maintenance Order</a>
+
+    <br /><br />
+    <form action="Maintenances/NumberOfMaintenances" method="post">
+            @Html.DropDownList("YearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
+
+            @Html.DropDownList("MonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
+            <b>To</b>
+            @Html.DropDownList("ToYearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
+            @Html.DropDownList("ToMonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
+       
+        <input class="btn btn-default" type="submit" value="Rides Maintenance">
+    </form>
 }
 <hr />
 <div>
@@ -124,7 +117,7 @@
                 <td>
                     @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
                     {
-                        <a asp-action="Edit" asp-route-id="@item.WorkOrderId"><i class="fas fa-edit"></i> Edit</a>  <br />
+                        <a asp-action="Edit" asp-route-id="@item.WorkOrderId"><i class="fas fa-edit"></i> Edit</a> <br />
                         <a class="text-danger" asp-action="Delete" asp-route-id="@item.WorkOrderId"><i class="fas fa-trash"></i> Delete</a>
 
                     }

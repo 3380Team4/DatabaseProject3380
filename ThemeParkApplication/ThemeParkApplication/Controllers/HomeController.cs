@@ -19,43 +19,49 @@ namespace ThemeParkApplication.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            
+
+            DateTime firstDayOfSale = DateTime.Now;
             var dataWeekly = new List<DataPoint>();
-            int[] weeklyCustomer = new int[] { 0, 0, 0, 0, 0, 0, 0 };
+            double[] weeklyCustomer = new double[] { 0, 0, 0, 0, 0, 0, 0 };
             var themeparkdbContext = _context.Transactions;
+            
 
             foreach (Transactions t in themeparkdbContext)
             {
-                for (var Day = DateTime.Now.Day - 7; Day < DateTime.Now.Day; Day++)
-                {
-                    if (t.DateOfSale.Day == Day)
-                    {
-                        if (t.DateOfSale.DayOfWeek == DayOfWeek.Monday)
-                            weeklyCustomer[0]++;
-                        else if (t.DateOfSale.DayOfWeek == DayOfWeek.Tuesday)
-                            weeklyCustomer[1]++;
-                        else if (t.DateOfSale.DayOfWeek == DayOfWeek.Wednesday)
-                            weeklyCustomer[2]++;
-                        else if (t.DateOfSale.DayOfWeek == DayOfWeek.Thursday)
-                            weeklyCustomer[3]++;
-                        else if (t.DateOfSale.DayOfWeek == DayOfWeek.Friday)
-                            weeklyCustomer[4]++;
-                        else if (t.DateOfSale.DayOfWeek == DayOfWeek.Saturday)
-                            weeklyCustomer[5]++;
-                        else if (t.DateOfSale.DayOfWeek == DayOfWeek.Sunday)
-                            weeklyCustomer[6]++;
-                    }
+               
+
+                if (DateTime.Compare(t.DateOfSale,firstDayOfSale) < 0)
+                { firstDayOfSale = t.DateOfSale;
+                    Debug.Print("aaaa");
+                    Debug.Print(firstDayOfSale.ToString());
                 }
+
+                if (t.DateOfSale.DayOfWeek == DayOfWeek.Monday)
+                    weeklyCustomer[0]++;
+                else if (t.DateOfSale.DayOfWeek == DayOfWeek.Tuesday)
+                    weeklyCustomer[1]++;
+                else if (t.DateOfSale.DayOfWeek == DayOfWeek.Wednesday)
+                    weeklyCustomer[2]++;
+                else if (t.DateOfSale.DayOfWeek == DayOfWeek.Thursday)
+                    weeklyCustomer[3]++;
+                else if (t.DateOfSale.DayOfWeek == DayOfWeek.Friday)
+                    weeklyCustomer[4]++;
+                else if (t.DateOfSale.DayOfWeek == DayOfWeek.Saturday)
+                    weeklyCustomer[5]++;
+                else if (t.DateOfSale.DayOfWeek == DayOfWeek.Sunday)
+                    weeklyCustomer[6]++;
 
             }
 
-            dataWeekly.Add(new DataPoint("Mon", weeklyCustomer[0]));
-            dataWeekly.Add(new DataPoint("Tue", weeklyCustomer[1]));
-            dataWeekly.Add(new DataPoint("Wed", weeklyCustomer[2]));
-            dataWeekly.Add(new DataPoint("thu", weeklyCustomer[3]));
-            dataWeekly.Add(new DataPoint("Fri", weeklyCustomer[4]));
-            dataWeekly.Add(new DataPoint("Sat", weeklyCustomer[5]));
-            dataWeekly.Add(new DataPoint("Sun", weeklyCustomer[6]));
+            double totalWeeksOfOpening = (DateTime.Now.Subtract(firstDayOfSale).Days) / 7;
+
+            dataWeekly.Add(new DataPoint("Mon", weeklyCustomer[0] / totalWeeksOfOpening));
+            dataWeekly.Add(new DataPoint("Tue", weeklyCustomer[1] / totalWeeksOfOpening));
+            dataWeekly.Add(new DataPoint("Wed", weeklyCustomer[2] / totalWeeksOfOpening));
+            dataWeekly.Add(new DataPoint("thu", weeklyCustomer[3] / totalWeeksOfOpening));
+            dataWeekly.Add(new DataPoint("Fri", weeklyCustomer[4] / totalWeeksOfOpening));
+            dataWeekly.Add(new DataPoint("Sat", weeklyCustomer[5] / totalWeeksOfOpening));
+            dataWeekly.Add(new DataPoint("Sun", weeklyCustomer[6] / totalWeeksOfOpening));
 
            
             ViewBag.dataWeekly = JsonConvert.SerializeObject(dataWeekly);

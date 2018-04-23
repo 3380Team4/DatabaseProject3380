@@ -14,9 +14,9 @@
 
 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
 {
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
+<p>
+    <a asp-action="Create" class="btn btn-sm btn-success"><i class="fas fa-plus-square"></i> Add New Employee</a>
+</p>
 }
 <table class="table">
     <thead>

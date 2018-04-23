@@ -14,19 +14,20 @@
 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
 {
     <p>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create" class="btn btn-sm btn-success"><i class="fas fa-plus-square"></i> Add New Transaction</a>
     </p>
-
 
 <form action="Transactions/NumberOfCustomers" method="post">
     @Html.DropDownList("YearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
+
     @Html.DropDownList("MonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
-    To
+    <b>To</b>
     @Html.DropDownList("ToYearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
     @Html.DropDownList("ToMonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
-    <input type="submit" value="Generate Number of Customers" />
-</form>
 
+    <input class="btn btn-default" type="submit" value="Generate Number of Customers">
+</form>
+    <br />
 }
 <table class="table">
     <thead>
@@ -54,33 +55,33 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Merch.ItemName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                $@Html.DisplayFor(modelItem => item.SaleAmount)
-            </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Merch.ItemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.SaleAmount)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Guest.CustomerFirstName)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Guest.CustomerFirstName)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.SellerEmployee.EmployeeId)
-            </td>
-            <td>
-                @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
-    {
-            <a asp-action="Edit" asp-route-id="@item.TransactionId"><i class="fas fa-edit"></i> Edit</a>
-            <a class="text-danger" asp-action="Delete" asp-route-id="@item.TransactionId"><i class="fas fa-trash"></i> Delete</a>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SellerEmployee.EmployeeId)
+                </td>
+                <td>
+                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.TransactionId"><i class="fas fa-edit"></i> Edit</a>
+                        <a class="text-danger" asp-action="Delete" asp-route-id="@item.TransactionId"><i class="fas fa-trash"></i> Delete</a>
 
-}
-            </td>
-        </tr>
+                    }
+                </td>
+            </tr>
         }
     </tbody>
 </table>
