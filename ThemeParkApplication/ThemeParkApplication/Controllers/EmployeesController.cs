@@ -100,8 +100,8 @@ namespace ThemeParkApplication.Controllers
             }
             ViewData["JobTitle"] = new SelectList(_context.JobTitleTable, "JobTitleIndex", "JobTitle", employees.JobTitle);
             ViewData["SupervisorId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeId", employees.SupervisorId);
-            ViewData["WorksAtAttr"] = new SelectList(_context.Attractions, "AttractionId", "AttractionId", employees.WorksAtAttr);
-            ViewData["WorksAtConc"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionId", employees.WorksAtConc);
+            ViewData["WorksAtAttr"] = new SelectList(_context.Attractions, "AttractionId", "AttractionName", employees.WorksAtAttr);
+            ViewData["WorksAtConc"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionName", employees.WorksAtConc);
             return View(employees);
         }
 

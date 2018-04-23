@@ -93,11 +93,11 @@
             </td>
             <td>
                 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
-    {
-            <a asp-action="Edit" asp-route-id="@item.EmployeeId"><i class="fas fa-edit"></i> Edit</a><br />
-            <a class="text-danger" asp-action="Delete" asp-route-id="@item.EmployeeId"><i class="fas fa-trash"></i> Delete</a>
-
-}
+                 {
+                     <a asp-action="Edit" asp-route-id="@item.EmployeeId"><i class="fas fa-edit"></i> Edit</a><br />
+                     <a class="text-danger" asp-action="Delete" asp-route-id="@item.EmployeeId"><i class="fas fa-trash"></i> Delete</a>
+ 
+                 }
             </td>
         </tr>
         }

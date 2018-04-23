@@ -59,8 +59,8 @@
                 {
                     <h6>Minimum Height <span class="badge-pill badge-info">All</span></h6>
 
-
                 }
+                <span class="badge-pill badge-warning">Managed by</span><div class="badge-pill badge-danger"> @item.Manager.FirstName @item.Manager.LastName</div><p></p>
                 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
                 {
                     <a class="btn btn-sm btn-outline-primary col-5" asp-action="Edit" asp-route-id="@item.AttractionId"><i class="fas fa-edit"></i> Edit</a>
