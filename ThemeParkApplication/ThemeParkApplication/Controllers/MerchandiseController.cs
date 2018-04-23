@@ -139,8 +139,8 @@ namespace ThemeParkApplication.Controllers
             {
                 return NotFound();
             }
-            ViewData["AttrId"] = new SelectList(_context.Attractions, "AttractionId", "AttractionId", merchandise.AttrId);
-            ViewData["ConcId"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionId", merchandise.ConcId);
+            ViewData["AttrId"] = new SelectList(_context.Attractions, "AttractionId", "AttractionName", merchandise.AttrId);
+            ViewData["ConcId"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionName", merchandise.ConcId);
             ViewData["ItemType"] = new SelectList(_context.ItemTypeTable, "ItemTypeIndex", "ItemType", merchandise.ItemType);
             return View(merchandise);
         }

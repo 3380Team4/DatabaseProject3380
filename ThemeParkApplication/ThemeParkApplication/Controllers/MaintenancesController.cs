@@ -79,8 +79,8 @@ namespace ThemeParkApplication.Controllers
         [Authorize(Roles = "Admin, Manager")]
         public IActionResult Create()
         {
-            ViewData["AttrId"] = new SelectList(_context.Attractions, "AttractionId", "AttractionId");
-            ViewData["ConcId"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionId");
+            ViewData["AttrId"] = new SelectList(_context.Attractions, "AttractionId", "AttractionName");
+            ViewData["ConcId"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionName");
             ViewData["MaintenanceEmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeId");
             ViewData["OrderType"] = new SelectList(_context.OrderTypeTable, "OrderTypeIndex", "OrderType");
             ViewData["WorkStatus"] = new SelectList(_context.WorkStatusTable, "WorkStatusIndex", "WorkStatus");
@@ -123,8 +123,8 @@ namespace ThemeParkApplication.Controllers
             {
                 return NotFound();
             }
-            ViewData["AttrId"] = new SelectList(_context.Attractions, "AttractionId", "AttractionId", maintenance.AttrId);
-            ViewData["ConcId"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionId", maintenance.ConcId);
+            ViewData["AttrId"] = new SelectList(_context.Attractions, "AttractionId", "AttractionName", maintenance.AttrId);
+            ViewData["ConcId"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionName", maintenance.ConcId);
             ViewData["MaintenanceEmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeId", maintenance.MaintenanceEmployeeId);
             ViewData["OrderType"] = new SelectList(_context.OrderTypeTable, "OrderTypeIndex", "OrderType", maintenance.OrderType);
             ViewData["WorkStatus"] = new SelectList(_context.WorkStatusTable, "WorkStatusIndex", "WorkStatus", maintenance.WorkStatus);
@@ -164,8 +164,8 @@ namespace ThemeParkApplication.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AttrId"] = new SelectList(_context.Attractions, "AttractionId", "AttractionId", maintenance.AttrId);
-            ViewData["ConcId"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionId", maintenance.ConcId);
+            ViewData["AttrId"] = new SelectList(_context.Attractions, "AttractionId", "AttractionName", maintenance.AttrId);
+            ViewData["ConcId"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionName", maintenance.ConcId);
             ViewData["MaintenanceEmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeId", maintenance.MaintenanceEmployeeId);
             ViewData["OrderType"] = new SelectList(_context.OrderTypeTable, "OrderTypeIndex", "OrderType", maintenance.OrderType);
             ViewData["WorkStatus"] = new SelectList(_context.WorkStatusTable, "WorkStatusIndex", "WorkStatus", maintenance.WorkStatus);
