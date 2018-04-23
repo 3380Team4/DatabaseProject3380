@@ -37,4 +37,16 @@ $(document).ready(function () {
     // $("body").parallax()
     console.log("JavaScript ended...");
 });
+$("#WorksAtConc").change(function () {
+    if ($("#WorksAtConc option:selected").text() != "None") {
+        $("#WorksAtAttr").val("");
+    }
+
+});
+
+$("#WorksAtAttr").change(function () {
+    if ($("#WorksAtAttr option:selected").text() != "None") {
+        $("#WorksAtConc").val("");
+    }
+});
 

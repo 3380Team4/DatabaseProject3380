@@ -23,11 +23,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="ConcId" class="control-label"></label>
-                <select asp-for="ConcId" class ="form-control" asp-items="ViewBag.ConcId"></select>
+                <select asp-for="ConcId" class ="form-control" asp-items="ViewBag.ConcId">
+                    <option value="">None</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="AttrId" class="control-label"></label>
-                <select asp-for="AttrId" class ="form-control" asp-items="ViewBag.AttrId"></select>
+                <select asp-for="AttrId" class="form-control" asp-items="ViewBag.AttrId">
+                    <option value="">None</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="DateClosure" class="control-label"></label>
