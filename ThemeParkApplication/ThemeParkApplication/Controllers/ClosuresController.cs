@@ -53,8 +53,8 @@ namespace ThemeParkApplication.Controllers
         [Authorize(Roles = "Admin, Manager")]
         public IActionResult Create()
         {
-            ViewData["AttrId"] = new SelectList(_context.Attractions, "AttractionId", "AttractionId");
-            ViewData["ConcId"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionId");
+            ViewData["AttrId"] = new SelectList(_context.Attractions, "AttractionId", "AttractionName");
+            ViewData["ConcId"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionName");
             ViewData["Reason"] = new SelectList(_context.ReasonTable, "ReasonIndex", "Reason");
             return View();
         }
@@ -73,8 +73,8 @@ namespace ThemeParkApplication.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AttrId"] = new SelectList(_context.Attractions, "AttractionId", "AttractionId", closures.AttrId);
-            ViewData["ConcId"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionId", closures.ConcId);
+            ViewData["AttrId"] = new SelectList(_context.Attractions, "AttractionId", "AttractionName", closures.AttrId);
+            ViewData["ConcId"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionName", closures.ConcId);
             ViewData["Reason"] = new SelectList(_context.ReasonTable, "ReasonIndex", "Reason", closures.Reason);
             return View(closures);
         }
@@ -93,8 +93,8 @@ namespace ThemeParkApplication.Controllers
             {
                 return NotFound();
             }
-            ViewData["AttrId"] = new SelectList(_context.Attractions, "AttractionId", "AttractionId", closures.AttrId);
-            ViewData["ConcId"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionId", closures.ConcId);
+            ViewData["AttrId"] = new SelectList(_context.Attractions, "AttractionId", "AttractionName", closures.AttrId);
+            ViewData["ConcId"] = new SelectList(_context.Concessions, "ConcessionId", "ConcessionName", closures.ConcId);
             ViewData["Reason"] = new SelectList(_context.ReasonTable, "ReasonIndex", "Reason", closures.Reason);
             return View(closures);
         }

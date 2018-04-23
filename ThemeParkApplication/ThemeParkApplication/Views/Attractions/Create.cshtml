@@ -8,9 +8,11 @@
 
 <h4>Attractions</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-md-4">
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="AttractionName" class="control-label"></label>
@@ -24,38 +26,45 @@
             </div>
             <div class="form-group">
                 <label asp-for="ManagerId" class="control-label"></label>
-                <select asp-for="ManagerId" class ="form-control" asp-items="ViewBag.ManagerId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="AttractionType" class="control-label"></label>
-                <select asp-for="AttractionType" class ="form-control" asp-items="ViewBag.AttractionType"></select>
-            </div>
-        <div>
-            <div class="form-group">
-                <label asp-for="HeightRequirement" class="control-label"></label>
-                <input asp-for="HeightRequirement" class="form-control" />
-                <span asp-validation-for="HeightRequirement" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AgeRequirement" class="control-label"></label>
-                <input asp-for="AgeRequirement" class="form-control" />
-                <span asp-validation-for="AgeRequirement" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AttractionStatus" class="control-label"></label>
-                <select asp-for="AttractionStatus" class ="form-control" asp-items="ViewBag.AttractionStatus"></select>
+                <select asp-for="ManagerId" class="form-control" asp-items="ViewBag.ManagerId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
         </div>
-        </form>
+        <div class="col-md-4">
+            <div>
+                <div class="form-group">
+                    <label asp-for="HeightRequirement" class="control-label"></label>
+                    <input asp-for="HeightRequirement" class="form-control" />
+                    <span asp-validation-for="HeightRequirement" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AgeRequirement" class="control-label"></label>
+                    <input asp-for="AgeRequirement" class="form-control" />
+                    <span asp-validation-for="AgeRequirement" class="text-danger"></span>
+                </div>
+
+            
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="AttractionType" class="control-label"></label>
+                <select asp-for="AttractionType" class="form-control" asp-items="ViewBag.AttractionType"></select>
+            </div>  
+            <div class="form-group">
+                <label asp-for="AttractionStatus" class="control-label"></label>
+                <select asp-for="AttractionStatus" class="form-control" asp-items="ViewBag.AttractionStatus"></select>
+            </div>
+        </div>
+</form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

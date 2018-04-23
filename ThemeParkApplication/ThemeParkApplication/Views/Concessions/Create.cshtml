@@ -24,36 +24,45 @@
             </div>
             <div class="form-group">
                 <label asp-for="ManagerId" class="control-label"></label>
-                <select asp-for="ManagerId" class ="form-control" asp-items="ViewBag.ManagerId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="StoreType" class="control-label"></label>
-                <select asp-for="StoreType" class ="form-control" asp-items="ViewBag.StoreType"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="OpeningTime" class="control-label"></label>
-                <input asp-for="OpeningTime" class="form-control" />
-                <span asp-validation-for="OpeningTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ClosingTime" class="control-label"></label>
-                <input asp-for="ClosingTime" class="form-control" />
-                <span asp-validation-for="ClosingTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ConcessionStatus" class="control-label"></label>
-                <select asp-for="ConcessionStatus" class ="form-control" asp-items="ViewBag.ConcessionStatus"></select>
+                <select asp-for="ManagerId" class="form-control" asp-items="ViewBag.ManagerId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+
+</div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="OpeningTime" class="control-label"></label>
+            <input asp-for="OpeningTime" class="form-control" />
+            <span asp-validation-for="OpeningTime" class="text-danger"></span>
+        </div>        
+        <div class="form-group">
+            <label asp-for="ClosingTime" class="control-label"></label>
+            <input asp-for="ClosingTime" class="form-control" />
+            <span asp-validation-for="ClosingTime" class="text-danger"></span>
+        </div>
+
+
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="StoreType" class="control-label"></label>
+            <select asp-for="StoreType" class="form-control" asp-items="ViewBag.StoreType"></select>
+        </div>
+        <div class="form-group">
+            <label asp-for="ConcessionStatus" class="control-label"></label>
+            <select asp-for="ConcessionStatus" class="form-control" asp-items="ViewBag.ConcessionStatus"></select>
+        </div>
+
+    </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
