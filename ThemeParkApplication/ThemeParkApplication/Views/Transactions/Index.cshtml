@@ -16,7 +16,7 @@
     <p>
         <a asp-action="Create">Create New</a>
     </p>
-}
+
 
 <form action="Transactions/NumberOfCustomers" method="post">
     @Html.DropDownList("YearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
@@ -27,7 +27,7 @@
     <input type="submit" value="Generate Number of Customers" />
 </form>
 
-
+}
 <table class="table">
     <thead>
         <tr>
@@ -73,9 +73,12 @@
                 @Html.DisplayFor(modelItem => item.SellerEmployee.EmployeeId)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
+    {
+            <a asp-action="Edit" asp-route-id="@item.TransactionId"><i class="fas fa-edit"></i> Edit</a>
+            <a class="text-danger" asp-action="Delete" asp-route-id="@item.TransactionId"><i class="fas fa-trash"></i> Delete</a>
+
+}
             </td>
         </tr>
         }

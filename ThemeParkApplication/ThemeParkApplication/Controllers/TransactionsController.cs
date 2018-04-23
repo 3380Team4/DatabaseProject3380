@@ -173,7 +173,7 @@ namespace ThemeParkApplication.Controllers
         {
             return _context.Transactions.Any(e => e.TransactionId == id);
         }
-
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> NumberOfCustomers(string YearNumber, string MonthNumber, string ToYearNumber, string ToMonthNumber)
         {
             TempData["year"] = YearNumber;

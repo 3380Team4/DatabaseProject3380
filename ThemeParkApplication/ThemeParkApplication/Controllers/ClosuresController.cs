@@ -176,7 +176,7 @@ namespace ThemeParkApplication.Controllers
         {
             return _context.Closures.Any(e => e.ClosureId == id);
         }
-
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> generateReportAsync(string YearNumber, string MonthNumber, string ToYearNumber, string ToMonthNumber)
         {
             TempData["year"] = YearNumber;

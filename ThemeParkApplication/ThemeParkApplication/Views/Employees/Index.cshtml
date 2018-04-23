@@ -92,9 +92,12 @@
                 @Html.DisplayFor(modelItem => item.WorksAtConcNavigation.ConcessionName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
+                @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
+    {
+            <a asp-action="Edit" asp-route-id="@item.EmployeeId"><i class="fas fa-edit"></i> Edit</a><br />
+            <a class="text-danger" asp-action="Delete" asp-route-id="@item.EmployeeId"><i class="fas fa-trash"></i> Delete</a>
+
+}
             </td>
         </tr>
         }

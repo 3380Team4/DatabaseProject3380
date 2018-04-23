@@ -235,7 +235,7 @@ namespace ThemeParkApplication.Controllers
             var report = _context.Maintenance.FromSql(query);
             return View(await report.ToListAsync());
         }
-
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> NumberOfMaintenances(string YearNumber, string MonthNumber, string ToYearNumber, string ToMonthNumber)
         {
             TempData["year"] = YearNumber;
