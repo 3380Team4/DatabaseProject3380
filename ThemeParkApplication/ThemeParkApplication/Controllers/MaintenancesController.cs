@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ThemeParkApplication.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace ThemeParkApplication.Controllers
 {
@@ -245,6 +246,59 @@ namespace ThemeParkApplication.Controllers
             var query = String.Format("SELECT * FROM dbo.Maintenance Where ( Work_Start_Date >= '{0}/01/{1}' and Work_Start_Date <'{2}/01/{3}')", MonthNumber, YearNumber, ToMonthNumber, ToYearNumber);
             var report = _context.Maintenance.FromSql(query);
             return View(await report.ToListAsync());
+        }
+
+        [Authorize(Roles = "Admin, Manager")]
+        public IActionResult NumberOfMaintenancesStatistic()
+        {
+            var dataMonthly = new List<DataPoint>();
+            double[] monthlyCustomer = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            var themeparkdbContext = _context.Maintenance;
+
+            foreach (Maintenance t in themeparkdbContext)
+            {
+                if (t.WorkStartDate.Month == 1)
+                    monthlyCustomer[0]++;
+                else if (t.WorkStartDate.Month == 2)
+                    monthlyCustomer[1]++;
+                else if (t.WorkStartDate.Month == 3)
+                    monthlyCustomer[2]++;
+                else if (t.WorkStartDate.Month == 4)
+                    monthlyCustomer[3]++;
+                else if (t.WorkStartDate.Month == 5)
+                    monthlyCustomer[4]++;
+                else if (t.WorkStartDate.Month == 6)
+                    monthlyCustomer[5]++;
+                else if (t.WorkStartDate.Month == 7)
+                    monthlyCustomer[6]++;
+                else if (t.WorkStartDate.Month == 8)
+                    monthlyCustomer[7]++;
+                else if (t.WorkStartDate.Month == 9)
+                    monthlyCustomer[8]++;
+                else if (t.WorkStartDate.Month == 10)
+                    monthlyCustomer[9]++;
+                else if (t.WorkStartDate.Month == 11)
+                    monthlyCustomer[10]++;
+                else if (t.WorkStartDate.Month == 12)
+                    monthlyCustomer[11]++;
+            }
+
+            dataMonthly.Add(new DataPoint("Jan", monthlyCustomer[0]));
+            dataMonthly.Add(new DataPoint("Feb", monthlyCustomer[1]));
+            dataMonthly.Add(new DataPoint("Mar", monthlyCustomer[2]));
+            dataMonthly.Add(new DataPoint("Apr", monthlyCustomer[3]));
+            dataMonthly.Add(new DataPoint("May", monthlyCustomer[4]));
+            dataMonthly.Add(new DataPoint("Jun", monthlyCustomer[5]));
+            dataMonthly.Add(new DataPoint("Jul", monthlyCustomer[6]));
+            dataMonthly.Add(new DataPoint("Aug", monthlyCustomer[7]));
+            dataMonthly.Add(new DataPoint("Sep", monthlyCustomer[8]));
+            dataMonthly.Add(new DataPoint("Oct", monthlyCustomer[9]));
+            dataMonthly.Add(new DataPoint("Nov", monthlyCustomer[10]));
+            dataMonthly.Add(new DataPoint("Dec", monthlyCustomer[11]));
+
+            ViewBag.dataMonthly = JsonConvert.SerializeObject(dataMonthly);
+
+            return View();
         }
 
     }

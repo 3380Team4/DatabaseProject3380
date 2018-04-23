@@ -17,16 +17,18 @@
     <a asp-action="Create" class="btn btn-sm btn-success"><i class="fas fa-plus-square"></i> Add Maintenance Order</a>
 
     <br /><br />
-    <form action="Maintenances/NumberOfMaintenances" method="post">
-            @Html.DropDownList("YearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
+          <form action="Maintenances/NumberOfMaintenances" method="post">
+              @Html.DropDownList("YearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
 
-            @Html.DropDownList("MonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
-            <b>To</b>
-            @Html.DropDownList("ToYearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
-            @Html.DropDownList("ToMonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
-       
-        <input class="btn btn-default" type="submit" value="Rides Maintenance">
-    </form>
+              @Html.DropDownList("MonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
+              <b>To</b>
+              @Html.DropDownList("ToYearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
+              @Html.DropDownList("ToMonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
+
+              <input class="btn btn-default" type="submit" value="Rides Maintenance">
+              <a  class="btn btn-dark" asp-controller="Maintenances" asp-action="NumberOfMaintenancesStatistic"> See Statistic</a>
+          </form>
+
 }
 <hr />
 <div>

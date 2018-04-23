@@ -17,16 +17,17 @@
         <a asp-action="Create" class="btn btn-sm btn-success"><i class="fas fa-plus-square"></i> Add New Close date</a>
     </p>
 
-<form action="Closures/generateReportAsync" method="post">
-    @Html.DropDownList("YearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
+    <form action="Closures/generateReportAsync" method="post">
+        @Html.DropDownList("YearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
 
-    @Html.DropDownList("MonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
-    <b>To</b>
-    @Html.DropDownList("ToYearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
-    @Html.DropDownList("ToMonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
+        @Html.DropDownList("MonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
+        <b>To</b>
+        @Html.DropDownList("ToYearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
+        @Html.DropDownList("ToMonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
 
-    <input class="btn btn-default" type="submit" value="Generate Report for Park Close">
-</form>
+        <input class="btn btn-default" type="submit" value="Generate Report for Park Close">
+        <a class="btn btn-dark" asp-controller="Closures" asp-action="NumberOfClosuresStatistic"> See Statistic for rainouts</a>
+    </form>
 
 
 }

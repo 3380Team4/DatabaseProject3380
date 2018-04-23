@@ -23,12 +23,25 @@
 
             <div class="form-group">
                 <label asp-for="ConcId" class="control-label"></label>
+<<<<<<< HEAD
                 <select asp-for="ConcId" class="form-control" asp-items="ViewBag.ConcId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="AttrId" class="control-label"></label>
                 <select asp-for="AttrId" class="form-control" asp-items="ViewBag.AttrId"></select>
             </div>                
+=======
+                <select asp-for="ConcId" class ="form-control" asp-items="ViewBag.ConcId">
+                    <option value="">None</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AttrId" class="control-label"></label>
+                <select asp-for="AttrId" class="form-control" asp-items="ViewBag.AttrId">
+                    <option value="">None</option>
+                </select>
+            </div>
+>>>>>>> 7562cc0ede6699a6f3c4470b5ad21157458c500e
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
