@@ -11,7 +11,7 @@
 <form asp-action="Edit">
     <div class="row">
         <div class="col-md-4">
-
+            <input type="hidden" asp-for="ConcessionId" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ConcessionName" class="control-label"></label>
