@@ -34,8 +34,8 @@
             <img class="card-img-top" src="~/images/Concessions/@(item.ConcessionName).jpg" width="320" height="240" alt="Card image cap">
             <div class="card-body">
 
-                <h6 class="card-title">
-                    @item.ConcessionName | @item.StoreTypeNavigation.StoreType
+                <h5 class="card-title">
+                    @item.ConcessionName | @item.StoreTypeNavigation.StoreType.ToLowerInvariant()
                     @if (item.ConcessionStatusNavigation.ConcessionStatus == "OPEN")
     {
                 <span class="badge badge-pill badge-success float-right">OPEN</span>
@@ -44,7 +44,7 @@ else
 {
                 <span class="badge badge-pill badge-danger float-right">CLOSED</span>
 }
-                </h6>
+                </h5>
                 <h6>Opening Hours<span class="badge-pill badge badge-info float-right">@item.OpeningTime to @item.ClosingTime</span></h6>
                 <h6>Managed By <span class=" badge badge-pill badge-info float-right"> @item.Manager.FirstName @item.Manager.LastName</span></h6>
 
