@@ -25,7 +25,7 @@
               @Html.DropDownList("ToYearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
               @Html.DropDownList("ToMonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
 
-              <input class="btn btn-default" type="submit" value="Rides Maintenance">
+              <input class="btn btn-default" type="submit" value="Generate Rides Broken Down">
               <a  class="btn btn-dark" asp-controller="Maintenances" asp-action="NumberOfMaintenancesStatistic"> See Statistic</a>
           </form>
 

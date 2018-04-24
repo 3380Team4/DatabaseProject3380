@@ -18,6 +18,9 @@
             <th>
                 Duration
             </th>
+            <th>
+                Reason
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -32,6 +35,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DurationClosure)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReasonNavigation.Reason)
             </td>
         </tr>
         }

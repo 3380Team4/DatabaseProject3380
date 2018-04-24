@@ -44,19 +44,19 @@
                 @Html.DisplayFor(modelItem => item.WorkStartDate.Month)/@Html.DisplayFor(modelItem => item.WorkStartDate.Day)/@Html.DisplayFor(modelItem => item.WorkStartDate.Year)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OrderType)
+                @Html.DisplayFor(modelItem => item.OrderTypeNavigation.OrderType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ConcId)
+                @Html.DisplayFor(modelItem => item.Conc.ConcessionName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AttrId)
+                @Html.DisplayFor(modelItem => item.Attr.AttractionName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaintenanceEmployeeId)
+                @Html.DisplayFor(modelItem => item.MaintenanceEmployee.FirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.WorkStatus)
+                @Html.DisplayFor(modelItem => item.WorkStatusNavigation.WorkStatus)
             </td>
         </tr>
         }

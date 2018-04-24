@@ -184,8 +184,8 @@ namespace ThemeParkApplication.Controllers
             TempData["month"] = MonthNumber;
             TempData["toYear"] = ToYearNumber;
             TempData["toMonth"] = ToMonthNumber;
-            var query = String.Format("SELECT * FROM dbo.Closures Where (Reason = 2 and Date_Closure >= '{0}/01/{1}' and Date_Closure <'{2}/01/{3}')", MonthNumber, YearNumber, ToMonthNumber, ToYearNumber);
-            var report = _context.Closures.FromSql(query);
+            var query = String.Format("SELECT * FROM dbo.Closures Where (Reason = 1 and Date_Closure >= '{0}/01/{1}' and Date_Closure <'{2}/01/{3}')", MonthNumber, YearNumber, ToMonthNumber, ToYearNumber);
+            var report = _context.Closures.FromSql(query).Include(c => c.ReasonNavigation);
             return View(await report.ToListAsync());
         }
 

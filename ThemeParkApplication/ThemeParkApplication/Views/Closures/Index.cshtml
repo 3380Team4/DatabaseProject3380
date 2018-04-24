@@ -25,7 +25,7 @@
         @Html.DropDownList("ToYearNumber", Enumerable.Range(2010, 9).Select(x => new SelectListItem { Text = x.ToString() }).Reverse(), "Year")
         @Html.DropDownList("ToMonthNumber", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString() }), "Month")
 
-        <input class="btn btn-default" type="submit" value="Generate Report for Park Close">
+        <input class="btn btn-default" type="submit" value="Generate Report for Rainouts">
         <a class="btn btn-dark" asp-controller="Closures" asp-action="NumberOfClosuresStatistic"> See Statistic for rainouts</a>
     </form>
 

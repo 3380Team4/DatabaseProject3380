@@ -214,28 +214,6 @@ namespace ThemeParkApplication.Controllers
             return _context.Maintenance.Any(e => e.WorkOrderId == id);
         }
 
-        public async Task<IActionResult> generateReportAsync(string YearNumber, string MonthNumber)
-        {
-            var month = Int32.Parse(MonthNumber);
-            var Year = Int32.Parse(YearNumber);
-
-            if (month == 12)
-            {
-                month = 1;
-                Year++;
-
-            }
-            else
-            {
-                month++;
-            }
-            var toMonth = month.ToString();
-            var toYear = Year.ToString();
-
-            var query = String.Format("SELECT * FROM dbo.Maintenance Where (Work_Start_Date >= '{0}/01/{1}' and Work_Start_Date < '{2}/01/{3}')", MonthNumber, YearNumber, toMonth, toYear);
-            var report = _context.Maintenance.FromSql(query);
-            return View(await report.ToListAsync());
-        }
         [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> NumberOfMaintenances(string YearNumber, string MonthNumber, string ToYearNumber, string ToMonthNumber)
         {
@@ -244,7 +222,7 @@ namespace ThemeParkApplication.Controllers
             TempData["toYear"] = ToYearNumber;
             TempData["toMonth"] = ToMonthNumber;
             var query = String.Format("SELECT * FROM dbo.Maintenance Where ( Work_Start_Date >= '{0}/01/{1}' and Work_Start_Date <'{2}/01/{3}')", MonthNumber, YearNumber, ToMonthNumber, ToYearNumber);
-            var report = _context.Maintenance.FromSql(query);
+            var report = _context.Maintenance.FromSql(query).Include(m => m.Attr).Include(m => m.Conc).Include(m => m.MaintenanceEmployee).Include(m => m.OrderTypeNavigation).Include(m => m.WorkStatusNavigation); ;
             return View(await report.ToListAsync());
         }
 

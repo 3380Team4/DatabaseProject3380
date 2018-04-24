@@ -52,8 +52,8 @@ namespace ThemeParkApplication.Controllers
         public IActionResult Create()
         {
             ViewData["GuestId"] = new SelectList(_context.Customers, "CustomerId", "CustomerFirstName");
-            ViewData["MerchId"] = new SelectList(_context.Merchandise, "ItemId", "ItemId");
-            ViewData["SellerEmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "EmployeeId");
+            ViewData["MerchId"] = new SelectList(_context.Merchandise, "ItemId", "ItemName");
+            ViewData["SellerEmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "FirstName");
             return View();
         }
 
@@ -176,12 +176,13 @@ namespace ThemeParkApplication.Controllers
 
         public async Task<IActionResult> NumberOfCustomers(string YearNumber, string MonthNumber, string ToYearNumber, string ToMonthNumber)
         {
+            
             TempData["year"] = YearNumber;
             TempData["month"] = MonthNumber;
             TempData["toYear"] = ToYearNumber;
             TempData["toMonth"] = ToMonthNumber;
             var query = String.Format("SELECT * FROM dbo.Merchandise As M, dbo.Transactions As T Where (M.Item_ID = T.Merch_ID And M.Item_ID = 100 And M.Item_Type = 3 and T.Date_Of_Sale >= '{0}/01/{1}' and T.Date_Of_Sale <'{2}/01/{3}')", MonthNumber, YearNumber, ToMonthNumber, ToYearNumber);
-            var report = _context.Transactions.FromSql(query);
+            var report = _context.Transactions.FromSql(query).Include(t => t.Guest).Include(t => t.Merch).Include(t => t.SellerEmployee);;
             return View(await report.ToListAsync());
         }
     }

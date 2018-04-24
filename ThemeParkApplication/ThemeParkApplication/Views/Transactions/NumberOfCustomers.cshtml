@@ -41,13 +41,13 @@
                 @Html.DisplayFor(modelItem => item.DateOfSale)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MerchId)
+                @Html.DisplayFor(modelItem => item.Merch.ItemName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateOfSale.Month)/@Html.DisplayFor(modelItem => item.DateOfSale.Day)/@Html.DisplayFor(modelItem => item.DateOfSale.Year)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GuestId)
+                @Html.DisplayFor(modelItem => item.Guest.CustomerFirstName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Quantity)
