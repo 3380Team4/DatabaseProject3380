@@ -16,19 +16,33 @@
 
 <h2>Concessions <span class="badge badge-pill badge-warning">@Model.Count()</span></h2>
 <hr />
-<div class="btn-group" role="group" aria-label="">
-    <a class = "btn btn-secondary btn-outline-success" asp-action="Index" asp-route-sortOrder="@ViewData["ShowOpenParm"]">Show Open</a>
-    <a class = "btn btn-secondary btn-outline-danger" asp-action="Index" asp-route-sortOrder="@ViewData["ShowClosedParm"]">Show Closed</a>
-    <a class = "btn btn-secondary btn-outline-info" asp-action="Index" asp-route-sortOrder="@ViewData["ShowAllParm"]">Show All</a>
+
+<div class="row">
+    <div class="col-12">
+        <div class="btn-group" role="group" aria-label="">
+            <a class="btn btn-secondary btn-outline-success" asp-action="Index" asp-route-sortOrder="@ViewData["ShowOpenParm"]">Show Open</a>
+            <a class="btn btn-secondary btn-outline-danger" asp-action="Index" asp-route-sortOrder="@ViewData["ShowClosedParm"]">Show Closed</a>
+            <a class="btn btn-secondary btn-outline-info" asp-action="Index" asp-route-sortOrder="@ViewData["ShowAllParm"]">Show All</a>
+        </div>
+        @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
+        {
+        <div class="float-right">
+            <a asp-action="Create" class="btn btn-md btn-block btn-outline-success"><i class="fas fa-plus-square"></i> Add New Concession</a>
+
+        </div>
+        }
+    </div>
+
 </div>
+
 
 
 
 <hr />
 <div class="row">
-
     @foreach (var item in Model)
     {
+
 
         <div class="card mb-3 ml-3" style="width: 22rem;">
             <img class="card-img-top" src="~/images/Concessions/@(item.ConcessionName).jpg" width="320" height="240" alt="Card image cap">
@@ -37,13 +51,13 @@
                 <h5 class="card-title">
                     @item.ConcessionName | @item.StoreTypeNavigation.StoreType.ToLowerInvariant()
                     @if (item.ConcessionStatusNavigation.ConcessionStatus == "OPEN")
-    {
-                <span class="badge badge-pill badge-success float-right">OPEN</span>
-}
-else
-{
-                <span class="badge badge-pill badge-danger float-right">CLOSED</span>
-}
+                    {
+                        <span class="badge badge-pill badge-success float-right">OPEN</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-pill badge-danger float-right">CLOSED</span>
+                    }
                 </h5>
                 <h6>Opening Hours<span class="badge-pill badge badge-info float-right">@item.OpeningTime to @item.ClosingTime</span></h6>
                 <h6>Managed By <span class=" badge badge-pill badge-info float-right"> @item.Manager.FirstName @item.Manager.LastName</span></h6>
@@ -57,12 +71,5 @@ else
         </div>
     }
 
-    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
-    {
-        <div class="card mb-3 ml-3 text-center" style="width: 20rem;">
-            <div class="card-body">
-                <a asp-action="Create" class="btn btn-sm btn-success btn-block"><i class="fas fa-plus-square"></i> Add New Concession</a>
-            </div>
-        </div>
-    }
+
 </div>

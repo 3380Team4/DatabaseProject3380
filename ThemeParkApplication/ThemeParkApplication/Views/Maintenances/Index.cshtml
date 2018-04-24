@@ -14,7 +14,7 @@
 <hr />
 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
 {
-    <a asp-action="Create" class="btn btn-sm btn-success"><i class="fas fa-plus-square"></i> Add Maintenance Order</a>
+    <a asp-action="Create" class="btn btn-lg btn-outline-success btn-block"><i class="fas fa-plus-square"></i> Add Maintenance Order</a>
 
     <br /><br />
           <form action="Maintenances/NumberOfMaintenances" method="post">

@@ -14,7 +14,7 @@
 <hr />
 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
 {
-    <a asp-action="Create" class="btn btn-sm btn-success"><i class="fas fa-plus-square"></i> Add New Merchandise</a>
+    <a asp-action="Create" class="btn btn-outline-success btn-lg btn-block"><i class="fas fa-plus-square"></i> Add New Merchandise</a>
 }
 <hr />
 <table class="table table-striped">
