@@ -14,6 +14,12 @@
                 Transaction Id
             </th>
             <th>
+                Date
+            </th>
+            <th>
+                Item Id
+            </th>
+            <th>
                 Date Purchased
             </th>
             <th>
@@ -30,6 +36,12 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.TransactionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfSale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MerchId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateOfSale.Month)/@Html.DisplayFor(modelItem => item.DateOfSale.Day)/@Html.DisplayFor(modelItem => item.DateOfSale.Year)

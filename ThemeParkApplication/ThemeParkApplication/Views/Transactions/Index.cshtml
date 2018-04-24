@@ -36,6 +36,9 @@
                 @Html.DisplayNameFor(model => model.Merch)
             </th>
             <th>
+                Date
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Quantity)
             </th>
             <th>
@@ -55,33 +58,36 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Merch.ItemName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    $@Html.DisplayFor(modelItem => item.SaleAmount)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Merch.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfSale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.SaleAmount)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Guest.CustomerFirstName)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Guest.CustomerFirstName)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.SellerEmployee.EmployeeId)
-                </td>
-                <td>
-                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
-                    {
-                        <a asp-action="Edit" asp-route-id="@item.TransactionId"><i class="fas fa-edit"></i> Edit</a>
-                        <a class="text-danger" asp-action="Delete" asp-route-id="@item.TransactionId"><i class="fas fa-trash"></i> Delete</a>
+            <td>
+                @Html.DisplayFor(modelItem => item.SellerEmployee.FirstName)
+            </td>
+            <td>
+                @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
+        {
+            <a asp-action="Edit" asp-route-id="@item.TransactionId"><i class="fas fa-edit"></i> Edit</a>
+            <a class="text-danger" asp-action="Delete" asp-route-id="@item.TransactionId"><i class="fas fa-trash"></i> Delete</a>
 
-                    }
-                </td>
-            </tr>
+}
+            </td>
+        </tr>
         }
     </tbody>
 </table>

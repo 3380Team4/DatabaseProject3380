@@ -31,21 +31,23 @@ namespace ThemeParkApplication.Controllers
                 {
                     firstDayOfSale = t.DateOfSale;
                 }
-
-                if (t.DateOfSale.DayOfWeek == DayOfWeek.Monday)
-                    weeklyCustomer[0]++;
-                else if (t.DateOfSale.DayOfWeek == DayOfWeek.Tuesday)
-                    weeklyCustomer[1]++;
-                else if (t.DateOfSale.DayOfWeek == DayOfWeek.Wednesday)
-                    weeklyCustomer[2]++;
-                else if (t.DateOfSale.DayOfWeek == DayOfWeek.Thursday)
-                    weeklyCustomer[3]++;
-                else if (t.DateOfSale.DayOfWeek == DayOfWeek.Friday)
-                    weeklyCustomer[4]++;
-                else if (t.DateOfSale.DayOfWeek == DayOfWeek.Saturday)
-                    weeklyCustomer[5]++;
-                else if (t.DateOfSale.DayOfWeek == DayOfWeek.Sunday)
-                    weeklyCustomer[6]++;
+                if (Convert.ToInt32(t.MerchId) == 100)
+                {
+                    if (t.DateOfSale.DayOfWeek == DayOfWeek.Monday)
+                        weeklyCustomer[0]++;
+                    else if (t.DateOfSale.DayOfWeek == DayOfWeek.Tuesday)
+                        weeklyCustomer[1]++;
+                    else if (t.DateOfSale.DayOfWeek == DayOfWeek.Wednesday)
+                        weeklyCustomer[2]++;
+                    else if (t.DateOfSale.DayOfWeek == DayOfWeek.Thursday)
+                        weeklyCustomer[3]++;
+                    else if (t.DateOfSale.DayOfWeek == DayOfWeek.Friday)
+                        weeklyCustomer[4]++;
+                    else if (t.DateOfSale.DayOfWeek == DayOfWeek.Saturday)
+                        weeklyCustomer[5]++;
+                    else if (t.DateOfSale.DayOfWeek == DayOfWeek.Sunday)
+                        weeklyCustomer[6]++;
+                }
             }
 
             double totalWeeksOfOpening = (DateTime.Now.Subtract(firstDayOfSale).Days) / 7;
@@ -72,30 +74,33 @@ namespace ThemeParkApplication.Controllers
 
             foreach (Transactions t in themeparkdbContext)
             {
-                if (t.DateOfSale.Month == 1)
-                    monthlyCustomer[0]++;
-                else if (t.DateOfSale.Month == 2)
-                    monthlyCustomer[1]++;
-                else if (t.DateOfSale.Month == 3)
-                    monthlyCustomer[2]++;
-                else if (t.DateOfSale.Month == 4)
-                    monthlyCustomer[3]++;
-                else if (t.DateOfSale.Month == 5)
-                    monthlyCustomer[4]++;
-                else if (t.DateOfSale.Month == 6)
-                    monthlyCustomer[5]++;
-                else if (t.DateOfSale.Month == 7)
-                    monthlyCustomer[6]++;
-                else if (t.DateOfSale.Month == 8)
-                    monthlyCustomer[7]++;
-                else if (t.DateOfSale.Month == 9)
-                    monthlyCustomer[8]++;
-                else if (t.DateOfSale.Month == 10)
-                    monthlyCustomer[9]++;
-                else if (t.DateOfSale.Month == 11)
-                    monthlyCustomer[10]++;
-                else if (t.DateOfSale.Month == 12)
-                    monthlyCustomer[11]++;
+                if (Convert.ToInt32(t.MerchId) == 100)
+                {
+                    if (t.DateOfSale.Month == 1)
+                        monthlyCustomer[0]++;
+                    else if (t.DateOfSale.Month == 2)
+                        monthlyCustomer[1]++;
+                    else if (t.DateOfSale.Month == 3)
+                        monthlyCustomer[2]++;
+                    else if (t.DateOfSale.Month == 4)
+                        monthlyCustomer[3]++;
+                    else if (t.DateOfSale.Month == 5)
+                        monthlyCustomer[4]++;
+                    else if (t.DateOfSale.Month == 6)
+                        monthlyCustomer[5]++;
+                    else if (t.DateOfSale.Month == 7)
+                        monthlyCustomer[6]++;
+                    else if (t.DateOfSale.Month == 8)
+                        monthlyCustomer[7]++;
+                    else if (t.DateOfSale.Month == 9)
+                        monthlyCustomer[8]++;
+                    else if (t.DateOfSale.Month == 10)
+                        monthlyCustomer[9]++;
+                    else if (t.DateOfSale.Month == 11)
+                        monthlyCustomer[10]++;
+                    else if (t.DateOfSale.Month == 12)
+                        monthlyCustomer[11]++;
+                }
             }
        
 
