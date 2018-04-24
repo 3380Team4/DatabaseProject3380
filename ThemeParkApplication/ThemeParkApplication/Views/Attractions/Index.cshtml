@@ -28,7 +28,7 @@
     @foreach (var item in Model)
     {
         <div class="card mb-3 ml-3" style="width: 22rem;">
-            <img class="card-img-top" src="~/images/alibaba.JPG" alt="Card image cap">
+            <img class="card-img-top" src="~/images/Attractions/@(item.AttractionName).jpg" width="320" height="240" alt="Card image cap">
             <div class="card-body">
 
                 <h5 class="card-title">
@@ -44,23 +44,23 @@
                 </h5>
                 @if (item.AgeRequirement != null)
                 {
-                    <h6>Minimum Age <span class="badge-pill badge-info">@item.AgeRequirement years +</span></h6>
+                    <h6>Minimum Age <span class="badge-pill badge-info float-right">@item.AgeRequirement years +</span></h6>
                 }
                 else
                 {
-                    <h6>Minimum Age <span class="badge-pill badge-info">All</span></h6>
+                    <h6>Minimum Age <span class="badge-pill badge-info float-right">All</span></h6>
                 }
 
                 @if (item.HeightRequirement != null)
                 {
-                    <h6>Minimum Height <span class="badge-pill badge-info">@item.HeightRequirement inches+</span></h6>
+                    <h6>Minimum Height <span class="badge-pill badge-info float-right">@item.HeightRequirement inches+</span></h6>
                 }
                 else
                 {
-                    <h6>Minimum Height <span class="badge-pill badge-info">All</span></h6>
+                    <h6>Minimum Height <span class="badge-pill badge-info float-right">All</span></h6>
 
                 }
-                <span class="badge-pill badge-warning">Managed by</span><div class="badge-pill badge-danger"> @item.Manager.FirstName @item.Manager.LastName</div><p></p>
+                <h6>Managed by <span class="badge-pill badge-danger float-right"> @item.Manager.FirstName @item.Manager.LastName</span></h6><p></p>
                 @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
                 {
                     <a class="btn btn-sm btn-outline-primary col-5" asp-action="Edit" asp-route-id="@item.AttractionId"><i class="fas fa-edit"></i> Edit</a>
