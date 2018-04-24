@@ -30,6 +30,11 @@ namespace ThemeParkApplication.Controllers
                 .Include(a => a.AttractionTypeNavigation)
                 .Include(a => a.Manager)
                        select s;
+
+            var m = themeparkdbContext.GroupBy(g => g.AttractionStatus)
+                    .Select(group => group.Count());
+            ViewBag.thing = await m.ToListAsync();
+            ViewBag.totalthings = themeparkdbContext.Count();
             switch (sortOrder)
             {
                 case "show_open":

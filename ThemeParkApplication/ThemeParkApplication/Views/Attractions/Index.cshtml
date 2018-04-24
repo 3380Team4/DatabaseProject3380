@@ -10,15 +10,15 @@
 @inject UserManager<ApplicationUser> UserManager
 
 
+
+
 <h2>Attractions <span class="badge badge-pill badge-warning">@Model.Count()</span></h2>
 <hr />
 <div class="btn-group" role="group" aria-label="">
-    <a class="btn btn-secondary btn-outline-success" asp-action="Index" asp-route-sortOrder="@ViewData["ShowOpenParm"]">Show Open</a>
-    <a class="btn btn-secondary btn-outline-danger" asp-action="Index" asp-route-sortOrder="@ViewData["ShowClosedParm"]">Show Closed</a>
-    <a class="btn btn-secondary btn-outline-info" asp-action="Index" asp-route-sortOrder="@ViewData["ShowAllParm"]">Show All</a>
+    <a class="btn btn-secondary btn-outline-success" asp-action="Index" asp-route-sortOrder="@ViewData["ShowOpenParm"]">Show Open <span class="badge badge-warning">@ViewBag.thing[0]</span></a>
+    <a class="btn btn-secondary btn-outline-danger" asp-action="Index" asp-route-sortOrder="@ViewData["ShowClosedParm"]">Show Closed <span class="badge badge-warning">@ViewBag.thing[1]</span></a>
+    <a class="btn btn-secondary btn-outline-info" asp-action="Index" asp-route-sortOrder="@ViewData["ShowAllParm"]">Show All <span class="badge badge-warning">@ViewBag.totalthings</span></a>
 </div>
-
-
 
 <hr />
 
