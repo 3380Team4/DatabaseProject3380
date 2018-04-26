@@ -48,7 +48,7 @@ namespace ThemeParkApplication.Controllers
         }
 
         // GET: Transactions/Create
-        [Authorize(Roles = "Admin, Manager")]
+        [Authorize(Roles = "Admin, Manager, Employee")]
         public IActionResult Create()
         {
             ViewData["GuestId"] = new SelectList(_context.Customers, "CustomerId", "CustomerFirstName");

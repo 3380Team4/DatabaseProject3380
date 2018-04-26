@@ -11,7 +11,7 @@
 
 <h2>Transactions</h2>
 
-@if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin")))
+@if (SignInManager.IsSignedIn(User) && (User.IsInRole("Manager") || User.IsInRole("Admin") || User.IsInRole("Employee")))
 {
     <p>
         <a asp-action="Create" class="btn btn-outline-success btn-lg btn-block"><i class="fas fa-plus-square"></i> Add New Transaction</a>
